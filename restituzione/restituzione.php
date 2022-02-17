@@ -115,8 +115,7 @@
 					}
 				}
 				
-			?>
-			
+			?>		
 			<form method = "post">
 				<br>Inserisci il codice del prestito interessato: <input type="text" name="codPrestito"><span> <?php echo "*".$err_codPrestito; ?> </span>
 				<br><br><input type="submit" value="Restituzione">
