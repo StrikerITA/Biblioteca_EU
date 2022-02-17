@@ -1,0 +1,41 @@
+body {
+  background-color: lightblue;
+}
+
+.bar-access {
+  background-color: #E2F705;
+  padding: 10px;
+  width: 100%;
+}
+
+.nav-link{
+  text-align: right;
+  font-size: 15px;
+  color: black;
+}
+
+.select{
+  border-radius: 25px 25px;
+
+}
+
+.insert{
+  margin: 0px;
+  width: 193px; 
+  height: 32px;
+  border-radius: 25px 25px;
+
+}
+
+.btn{
+  margin: 0px;
+  width: 55px;
+  height: 32px;
+  background-color: #65e4ff;
+  border-radius: 25px 25px;
+}
+
+.text-select-btn{
+  width: 484px;
+  height: 37px;
+}
