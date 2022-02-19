@@ -19,13 +19,14 @@
 
 	
 
-	<form action="visualizazione.php" method="POST">
+	<form action="/Biblioteca_polizzi/ricerca/visualizazione.php" method="POST">
 
 		<div id="conteiner" class="text-select-btn">
 			<!--selezione-->
 			<select class="select" name="selezione">
-				<option value="0">Autore</option>
 				<option value="1">Titolo</option>
+				<option value="0">Autore</option>
+				
 			</select>
 
 			<!--text-->

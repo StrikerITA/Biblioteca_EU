@@ -47,6 +47,7 @@
 				$result_img = $conn->query($sql_img);
 				$img = $result_img->fetch_assoc();
 				$immagine = $img["Immagine"];
+				echo $immagine;
 
 				//se esiste un libro corrispondente alla ricerca lo stampa
 				if($result_dati->num_rows > 0) {
@@ -54,7 +55,7 @@
 					while($row = $result_dati->fetch_assoc()) {
 						//immagine non viene stampata correttamente 
 						//a video viene visualizzato il percorso dell'immagine
-						echo "<tr><td><th>". $CodiceLibro_ricercato ."</td><td><th>". $row["Autore"]."</td><td><th>". $row["Editore"]. "</td><td><th>". $row["Titolo"].  $row["Descrizione"]. "<img src=".$immagine."/>"."</td></tr>";
+						echo "<tr><td><th>". $CodiceLibro_ricercato ."</td><td><th>". $row["Autore"]."</td><td><th>". $row["Editore"]. "</td><td><th>". $row["Titolo"].  $row["Descrizione"]. "<img src='/Biblioteca_polizzi/Immagini/".$immagine."'/>"."</td></tr>";
 					}
 					echo "</table>";
 				} else {

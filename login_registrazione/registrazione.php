@@ -32,7 +32,7 @@ session_start();
 	<br><br>
 	Indirizzo <input id="inserimento" type="text" name="indirizzo">
 	<br><br>
-	Telefono <input type="tel" id="inserimento" name="telefono" pattern="[0-9]{10}">
+	Telefono <input type="tel" id="inserimento" name="telefono" pattern="[0-9]{3} [0-9]{3} [0-9]{4}">
 	<br><br>
 	<input id=button type="submit" value="Registrati" name="submit">
 	</button>
