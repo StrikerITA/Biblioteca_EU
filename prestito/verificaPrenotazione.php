@@ -1,5 +1,5 @@
 <?php
-    include "../header.html";
+    include "../header.php";
 ?>
 <div class="p-5 py-5 my-5 text-center container" style="background-color: #eee;">
     <h1>Verifica la Prenotazione</h1>

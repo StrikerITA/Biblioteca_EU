@@ -1,6 +1,6 @@
 <?php
 //include $_SERVER['DOCUMENT_ROOT']."/Biblioteca_polizzi/header.html";
-include "../header.html";
+include "../header.php";
 ?>
 <br>
 <br>

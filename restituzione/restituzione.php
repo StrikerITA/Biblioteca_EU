@@ -6,7 +6,9 @@
 		Aggiungere il form di PaginaPR
 		Non si è capito se la restituzione è per ogni utente o meno, in tal caso modifica la prima query (condizione mancante)
 	-->
-	<style>
+	
+		<head>
+		<style>
 		body{
 			background-color: #f18973;
 		}
@@ -29,12 +31,17 @@
 			color: red;
 		}
 	</style>
-		<head>
-			<h1> Restituzione </h1>
+			 
+	<title>Restituzione</title>
 		</head>
 		<body>
 			
 			<?php
+
+
+			include "../header.php";
+
+
 				$codicePrestito = "";
 				$err_codPrestito = "";
 				//a cosa serve  $err_codPrestito?

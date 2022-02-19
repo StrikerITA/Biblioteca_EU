@@ -6,6 +6,9 @@
 </head>
 
 <body>
+<?php
+include "../header.php";
+?>
 
 	<?php
 		$Err="";
@@ -76,50 +79,69 @@
 		}
 
 	?>
+<div class="px-4 py-5 my-5 text-center container" style="background-color: #eee;">
+	<form class="row g-3" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
-<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-		Autore: <input type = "text" name = "autore">
-		<br>
-		<br>
+		<div class="col-md-4">
+			<input placeholder="Titolo" type="text" class="form-control" name="titolo">
+		</div>
+		<div class="col-md-4">
+    		<input placeholder="Autore" type="text" class="form-control" name="autore">
+  		</div>
+		<div class="col-md-4">
+    		<input placeholder="Editore" type="text" class="form-control" name="editore">
+  		</div>
 
-		Editore: <input type="text" name="editore">
-		<br>
-		<br>
+		<div class="col-md-12">
+			<label for="[]" class="form-label"></label>
+			<textarea class="form-control" placeholder="Descrizione" name="descrizione"></textarea>
+		</div>
 
-		Titolo: <input type="text" name="titolo">
-		<br>
-		<br>
+		<div class="col-md-3">
+			<label for="[]" class="form-label"></label>
+    		<input placeholder="Pagina" type="number" class="form-control" name="pagine">
+  		</div>
+		  
+		<div class="col-md-3">
+			<label for="[]" class="form-label"></label>	
+    		<input placeholder="Numero Copie" type="number" class="form-control" name="numeroCopie">
+  		</div>
 
-		Descrizione: <input type="text" name="titolo">
-		<br>
-		<br>
+		<div class="col-md-3">
+			<label for="[]" class="form-label"></label>
+    		<input placeholder="Copie Disponibili" type="number" class="form-control" name="copieDisponibili">
+  		</div>
+		
+		<div class="col-md-3">
+			<label for="[]" class="form-label"></label>
+    		<input placeholder="Ultimo Prezzo" type="number" step="0.01" class="form-control" name="ultimoPrezzo">
+  		</div>
 
-		Immagine: <input type="file" name="immagine">
-		<br>
-		<br>
+		<div class="col-md-4">
+			<label for="[]" class="form-label"></label>
+    		<input placeholder="Codice Categoria" type="text"  class="form-control" name="codiceCategoria">
+  		</div>
 
-		Pagine: <input type="text" name="pagine">
-		<br>
-		<br>
+		  <div class="col-md-4">
+			<label for="[]" class="form-label"></label>
+			
+			
+  		</div>
+		  <div class="col-md-4">
+			<label for="[]" class="form-label"></label>
+			<input class="form-control form-control-sm" type="file" name="codiceCategoria">
+			
+  		</div>
 
-		Ultimo prezzo: <input type="text" name="ultimoPrezzo">
-		<br>
-		<br>
+		
+	
+		<div class="col-12">
+    		<button type="submit" class="btn btn-primary">Invia</button>
+  		</div>
 
-		Numero copie: <input type="text" name="numeroCopie">
-		<br>
-		<br>
-
-		Copie disponibli: <input type="text" name="copieDisponibili">
-		<br>
-		<br>
-
-		Codice categoria: <input type="text" name="codiceCategoria">
-		<br>
-		<br>
-
-		<input type="submit" name="invia" value="submit">
-</form>
+			
+	</form>
+</div>
 
 		<?php
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -146,6 +168,8 @@
 		$conn->close();
 }
 ?>
+
+
 
 </body>
 </html>

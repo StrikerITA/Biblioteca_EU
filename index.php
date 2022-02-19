@@ -4,13 +4,11 @@
 
 
 <?php
-include "header.html";
+include "header.php";
 ?>
 <br><br>
 
-<a href="ricerca/ricerca 1.php">Ricerca     </a>
-<a href="areaBibliotecario.php">areaBibliotecario    </a>
-
+<a href="areaBibliotecario.php">areaBibliotecario</a>
 
 <br><br><br><br>
 

@@ -4,12 +4,16 @@
 <title>
 Biblioteca Online 
 </title>
-<link rel="stylesheet" href="stilebiblioteca.css">
+
+
+<!-- <link rel="stylesheet" href="stilebiblioteca.css"> -->
 
 </head>
 <body>
 
 <?php
+include "../header.php";
+
 
 session_start();
 
