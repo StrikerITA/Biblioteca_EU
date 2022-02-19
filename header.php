@@ -14,6 +14,9 @@
                     <li class="nav-item active">
                         <a class="nav-link text-white"  href="/Biblioteca_polizzi/index.php">Home</a>
                     </li>
+                    <li class="nav-item active">
+                    <a class="nav-link text-white" href="areaBibliotecario.php">Area Bibliotecario</a>
+                    </li>
                     
                 </ul>
                 <ul class="navbar-nav ml-auto">
