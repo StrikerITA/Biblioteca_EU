@@ -12,7 +12,7 @@ include "header.php";
 
 <?php
 
-include "ricerca/ricerca 1.php";
+include "ricerca/ricerca_1.php";
 
 
 ?>

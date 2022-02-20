@@ -7,11 +7,8 @@
 </head>
 <body>
 	<?php
-
-
-	include "../header.php";
-
-
+		include "../header.php";
+		
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$select = $_POST["selezione"];
 			$text = $_POST["testo"];
@@ -62,8 +59,6 @@
 						//a video viene visualizzato il percorso dell'immagine
 						echo "<tr><td><th>". $CodiceLibro_ricercato ."</td><td><th>". $row["Autore"]."</td><td><th>". $row["Editore"]. "</td><td><th>". $row["Titolo"].  $row["Descrizione"]. "<img src='/Biblioteca_polizzi/Immagini/".$immagine."'/>"."</td></tr>";
 					}
-
-					
 					echo "</table>";
 				} else {
 					//se non lo trova stampa l'errore
