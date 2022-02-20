@@ -16,7 +16,7 @@
 		?>
 		<div class="px-4 py-5 my-5 text-center container rounded-5 align-middle"  style="background-color: #eee;">
 			<h1>Cerca un libro</h1><br>
-		<form class="row g-3" action="Biblioteca_polizzi/ricerca/visualizzazione.php" method="POST">
+		<form class="row g-3" action="ricerca/visualizzazione.php" method="POST">
 			<!--selezione-->
 			<div class="col-md-2">
 			<select class="form-control" name="selezione">

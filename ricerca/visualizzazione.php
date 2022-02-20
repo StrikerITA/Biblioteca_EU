@@ -57,7 +57,7 @@
 					while($row = $result_dati->fetch_assoc()) {
 						//immagine non viene stampata correttamente 
 						//a video viene visualizzato il percorso dell'immagine
-						echo "<tr><td><th>". $CodiceLibro_ricercato ."</td><td><th>". $row["Autore"]."</td><td><th>". $row["Editore"]. "</td><td><th>". $row["Titolo"].  $row["Descrizione"]. "<img src='/Biblioteca_polizzi/Immagini/".$immagine."'/>"."</td></tr>";
+						echo "<tr><td><th>". $CodiceLibro_ricercato ."</td><td><th>". $row["Autore"]."</td><td><th>". $row["Editore"]. "</td><td><th>". $row["Titolo"].  $row["Descrizione"]. "<img src='/Biblioteca_polizzi/Inserimento/Immagini/".$immagine."'/>"."</td></tr>";
 					}
 					echo "</table>";
 				} else {

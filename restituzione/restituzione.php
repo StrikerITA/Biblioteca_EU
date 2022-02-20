@@ -8,7 +8,7 @@
 	-->
 	
 		<head>
-		<style>
+		<!--<style>
 		body{
 			background-color: #f18973;
 		}
@@ -30,22 +30,85 @@
 		span {
 			color: red;
 		}
-	</style>
+	</style>-->
 			 
 	<title>Restituzione</title>
 		</head>
 		<body>
 			
+		
 			<?php
 
-
+			
 			include "../header.php";
-
+			echo "<br>";
 
 				$codicePrestito = "";
 				$err_codPrestito = "";
 				//a cosa serve  $err_codPrestito?
 				
+// primo cos
+
+				$servername = "localhost";
+				$username = "root";
+				$password = "";
+				$dbname = "biblioteca";
+					
+				$conn = new mysqli($servername, $username, $password, $dbname);
+
+				if ($conn->connect_error) {
+					die("Connection failed: " . $conn->connect_error);
+				}
+				
+				//$sql = "SELECT CodiceCopia, CodicePrenotazione, FinePrestito, InizioPrestito, StatoPrestito FROM prestito";
+				$sql = "SELECT * FROM prestito WHERE StatoPrestito!='restituito'";
+				$result = $conn->query($sql);
+
+				if ($result->num_rows > 0) {
+					echo '<table class="table">';
+					echo '
+					<thead>
+
+
+						<tr>
+							<th scope="col">Codice Prestito</th>
+							<th scope="col">Inizio Prestito</th>
+							<th scope="col">Fine Prestito</th>
+							<th scope="col">Stato Prestito</th>
+							<th scope="col">Codice Copia</th>
+						</tr>
+					</thead>';
+
+					echo '
+					<tbody>';
+					while($row = $result->fetch_assoc()) {
+						echo '
+							<tr>
+								<td>'.$row["CodicePrenotazione"].'</td>
+								<td>'.$row["InizioPrestito"].'</td>
+								<td>'.$row["FinePrestito"].'</td>
+								<td>'.$row["StatoPrestito"].'</td>
+								<td>'.$row["CodiceCopia"].'</td>
+								
+							</tr>
+						';
+					}
+					echo '</tbody>';
+					echo '</table>';
+					/*echo "<br><table>";
+					echo "<tr><td>CodiceCopia</td><td>CodicePrenotazione</td><td>FinePrestito</td><td>InizioPrestito</td><td>StatoPrestito</td></tr>";
+					while($row = $result->fetch_assoc()) {
+
+						echo "<tr><td>".$row["CodiceCopia"]."</td><td>".$row["CodicePrenotazione"]."</td><td>".$row["FinePrestito"]."</td><td>".$row["InizioPrestito"]."</td><td>".$row["StatoPrestito"];
+					}
+					echo "</table>";*/
+				} else {
+					//qui si intende una restituzione personale o globale?
+					echo "Non sono presenti libri da restituire";
+				}
+//fine cosa
+
+
 				if($_SERVER["REQUEST_METHOD"] == "POST"){
 					
 					if(!empty($_POST["codPrestito"])){
@@ -54,31 +117,7 @@
 						$err_codPrestito = "Inserisci un codice";
 					}
 					
-					$servername = "localhost";
-					$username = "root";
-					$password = "";
-					$dbname = "biblioteca";
 					
-					$conn = new mysqli($servername, $username, $password, $dbname);
-
-					if ($conn->connect_error) {
-						die("Connection failed: " . $conn->connect_error);
-					}
-					
-					$sql = "SELECT CodiceCopia, CodicePrenotazione, FinePrestito, InizioPrestito, StatoPrestito FROM prestito";
-					$result = $conn->query($sql);
-
-					if ($result->num_rows > 0) {
-						echo "<br><table>";
-						echo "<tr><td>CodiceCopia</td><td>CodicePrenotazione</td><td>FinePrestito</td><td>InizioPrestito</td><td>StatoPrestito</td></tr>";
-						while($row = $result->fetch_assoc()) {
-							echo "<tr><td>".$row["CodiceCopia"]."</td><td>".$row["CodicePrenotazione"]."</td><td>".$row["FinePrestito"]."</td><td>".$row["InizioPrestito"]."</td><td>".$row["StatoPrestito"];
-						}
-						echo "</table>";
-					} else {
-						//qui si intende una restituzione personale o globale?
-						echo "Non sono presenti libri da restituire";
-					}
 						
 					if(!empty($codicePrestito)){
 						//verifica codice prestito == CodicePrenotazione

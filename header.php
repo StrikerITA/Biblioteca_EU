@@ -6,7 +6,7 @@
         <script src="https://kit.fontawesome.com/15ee1b0016.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(255, 181, 43);">
+        <nav class="navbar navbar-expand navbar-light" style="background-color: rgb(255, 181, 43);">
             <span class="navbar-brand text-white" >Biblioteca</span>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -15,7 +15,7 @@
                         <a class="nav-link text-white"  href="/Biblioteca_polizzi/index.php">Home</a>
                     </li>
                     <li class="nav-item active">
-                    <a class="nav-link text-white" href="areaBibliotecario.php">Area Bibliotecario</a>
+                    <a class="nav-link text-white" href="/Biblioteca_polizzi/areaBibliotecario.php">Area Bibliotecario</a>
                     </li>
                     
                 </ul>

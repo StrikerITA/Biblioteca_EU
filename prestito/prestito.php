@@ -1,5 +1,5 @@
 <?php
-    include "./header.php";
+    include "../header.php";
 ?>
 <?php
 
@@ -21,7 +21,8 @@
         </div>';
     }
 
-    function verificaQuery($result, $conn, $query){
+    function verificaQuery($conn, $query){
+        $esitoQuery=false;
         if($conn->query($query)==TRUE){
             $esitoQuery=true;
         }
@@ -41,9 +42,9 @@
 
     $query = "INSERT INTO prestito (CodicePrenotazione, InizioPrestito, FinePrestito, StatoPrestito, CodiceCopia)
                 VALUES ('$codicePrenotazione', '$dateStartString', '$dateEndString', 'prestato', '$codiceCopia')";
-
+    
     //query fatta con la funzione appositamente creata
-    $esitoQuery = verificaQuery($result, $conn, $query);
+    $esitoQuery = verificaQuery( $conn, $query);
 
     //$query_remove = "UPDATE libro SET CopieDisponibili=CopieDisponibili-1 WHERE CodiceLibro='$codiceCopia'";
     //$aggiornaStatoPrenotazione = "UPDATE prenota SET StatoPrenotazione='prenotato' WHERE CodicePrenotazione='$codicePrenotazione'";
@@ -51,7 +52,7 @@
     //in caso di esito positivo 
     if($esitoQuery){
         $query = "UPDATE prenota SET StatoPrenotazione='prenotato' WHERE CodicePrenotazione='$codicePrenotazione'";
-        $esitoQuery = verificaQuery($result, $conn, $query);  
+        $esitoQuery = verificaQuery( $conn, $query);  
     }
 
     if ($esitoQuery) {
