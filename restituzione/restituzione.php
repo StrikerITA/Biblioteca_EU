@@ -129,14 +129,15 @@
 							$result = $conn->query($sql);
 							$sql = "UPDATE prenota SET StatoPrenotazione='annullato' WHERE CodicePrenotazione='$codicePrestito'";
 							$result = $conn->query($sql);
-							$sql = "SELECT CodiceLibro, CodiceCopia FROM libro, prestito WHERE CodiceLibro=CodiceCopia AND CodicePrenotazione='$codicePrestito'";
+							$sql = "SELECT CodiceLibro FROM libro WHERE CodiceLibro=(SELECT CodiceLibro FROM prenota WHERE CodicePrenotazione='$codicePrestito')";
 							$result = $conn->query($sql);
 
 							if($result->num_rows > 0){
 								echo "<br><br>TROVATO";
 								//chiedere a compa a cosa serve AND in questa query
-								$sql = "UPDATE libro SET CopieDisponibili=(SELECT CopieDisponibili+1 FROM libro, prestito WHERE CodiceLibro = AND CodicePrenotazione='$codicePrestito')
-								 WHERE CodiceLibro=(SELECT CodiceCopia FROM prestito WHERE CodicePrenotazione='$codicePrestito' AND CopieDisponibili<NumeroCopie)";
+								$sql = "UPDATE libro SET CopieDisponibili=(SELECT CopieDisponibili+1 FROM libro WHERE CodiceLibro=
+																		  (SELECT CodiceLibro FROM prenota WHERE CodicePrenotazione='$codicePrestito'))
+																		   WHERE CodiceLibro=(SELECT CodiceLibro FROM prenota WHERE CodicePrenotazione='$codicePrestito')";
 								 
 								 if($conn->query($sql)==TRUE){
 									 echo "<br>FUNZIONE 'UPDATE' ANDATA A BUON FINE";

@@ -62,6 +62,9 @@ if (!empty($codf)and !empty($email)and !empty($pass))
 		if ($result->num_rows>0 and $result2->num_rows>0 and $result3->num_rows>0)
 		{
 			echo " ti abbiamo trovato l'account, ti stiamo collegando...";
+			session_start();
+
+
             header("Location: /Biblioteca_polizzi/index.php");
 		}
 		else

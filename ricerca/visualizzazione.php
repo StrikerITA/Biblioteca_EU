@@ -6,9 +6,10 @@
 	<title></title>
 </head>
 <body>
+	
 	<?php
 		include "../header.php";
-		
+		echo '<br><br><br>';
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$select = $_POST["selezione"];
 			$text = $_POST["testo"];
@@ -37,7 +38,7 @@
 			$result = $conn -> query($sql);
 			$row = $result->fetch_assoc();
 			$CodiceLibro_ricercato = $row["CodiceLibro"];
-			$sql_datilibro = "SELECT Titolo, Autore, Editore, Descrizione FROM libro WHERE CodiceLibro = '$CodiceLibro_ricercato'";
+			$sql_datilibro = "SELECT  Titolo, Autore, Editore, Descrizione FROM libro WHERE CodiceLibro = '$CodiceLibro_ricercato'";
 
 			//entra solo se abbiamo scelto la select
 			if($select == "0" || $select == "1"){
@@ -49,17 +50,51 @@
 				$result_img = $conn->query($sql_img);
 				$img = $result_img->fetch_assoc();
 				$immagine = $img["Immagine"];
-				echo $immagine;
 
 				//se esiste un libro corrispondente alla ricerca lo stampa
 				if($result_dati->num_rows > 0) {
-					echo "<table>";
+					
 					while($row = $result_dati->fetch_assoc()) {
 						//immagine non viene stampata correttamente 
 						//a video viene visualizzato il percorso dell'immagine
-						echo "<tr><td><th>". $CodiceLibro_ricercato ."</td><td><th>". $row["Autore"]."</td><td><th>". $row["Editore"]. "</td><td><th>". $row["Titolo"].  $row["Descrizione"]. "<img src='/Biblioteca_polizzi/Inserimento/Immagini/".$immagine."'/>"."</td></tr>";
+
+
+						/*echo "<tr>
+						<td><th>". $CodiceLibro_ricercato ."</td>
+						<td><th>". $row["Autore"]."</td><td><th>". $row["Editore"]. "</td>
+						<td><th>". $row["Titolo"].  $row["Descrizione"]. "
+						<img width='500' height='500' class='img-thumbnail' src='/Biblioteca_polizzi/Inserimento/Immagini/".$immagine."'/>"."</td>
+						</tr>";*/
+						echo "<form action=". "/Biblioteca_polizzi/prenotazione/Prenotazioni.php"." method='POST'>";
+						echo "
+						<div class='row'>
+							<div class='col-3'>
+								<img width='500' height='500' class='img-thumbnail' src='/Biblioteca_polizzi/Inserimento/Immagini/".$immagine."'/>
+							</div>
+							<div class='col-4'>
+							<div class='row'>
+								<div class='col-6'><h2>".  $row["Titolo"] ."</h2> </div>
+								<div class='col-6'><h3>".  $row["Autore"] ."</h3> </div>
+								</div>
+								<div class='row'>
+									<h6>".  $row["Descrizione"] ."</h6>
+								</div>
+								
+							</div>
+							<input type='hidden' value='".$CodiceLibro_ricercato."' name='codiceLibro' >
+							
+							<div class='col-5'><button>Prenota</button></div>
+						</div>
+						";
+
+						echo "</form>";
+
+						
+						
+
+
 					}
-					echo "</table>";
+					
 				} else {
 					//se non lo trova stampa l'errore
 					echo "Nessun libro trovato!";
@@ -71,3 +106,4 @@
 	?>
 </body>
 </html>
+

@@ -4,6 +4,8 @@
         oppure tramite il POST del foglio precedente -->
     </head>
     <body>
+    <?php include "../header.php";?>
+
         <div>
             <span>PRENOTA QUI IL TUO LIBRO:</span>
             <br><br>
@@ -22,6 +24,10 @@
             </form>
         </div>
         <?php
+            function alert($msg) {
+                echo "<script type='text/javascript'>alert('$msg');</script>";
+            }
+
             $servername = "localhost";
             $username = "root";
             $password = "";
@@ -62,15 +68,18 @@
                         //NON CONVERTE L'OBJ IN STRING E DA STRING IN INT
                         $num_copie = $row["NumeroCopie"]; // sottrae le copie
                         $num_copie = $num_copie - 1;
+                        alert($num_copie);
                         $sql = "UPDATE libro SET CopieDisponibili = '$num_copie' WHERE CodiceLibro = '$CodiceLibro'";
 
                         //cambia il record nel database
                         if($connessione->query($sql) === TRUE){
-                            echo "Copie aggiornate";
+                            alert("Copie aggiornate");
                         }else{
-                            echo "Impossibile aggiornare le copie disponibili!";
+                            alert("Impossibile aggiornare le copie disponibili!");
                         }
 
+                    }else{
+                        alert("Non ci sono copie disponibili!");
                     }
                     header('Location: test.html'); //sostituire test.html con la pagina successiva
                     $connessione->close();
