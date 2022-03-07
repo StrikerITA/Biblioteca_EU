@@ -20,6 +20,15 @@
                     
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                <?php
+                /*
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }else if (session_status() !== PHP_SESSION_NONE) {
+                    echo $_SESSION["favcolor"];
+                }*/
+
+                ?>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/Biblioteca_polizzi/login_registrazione/registrazione.php">Registrazione</a>
                     </li>
@@ -31,6 +40,7 @@
             </div>
         </nav>
         <div>
+            
             
         
         </div>

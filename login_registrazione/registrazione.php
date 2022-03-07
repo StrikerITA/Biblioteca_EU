@@ -82,8 +82,6 @@ if (isset ($_POST["submit"])){
 	else
 
 	{
-		
-
 			echo " Reinserire il nome!! <br><br>";
 			//se la condizione fallisce allora svuota la variabile:
 			$nom = test_input("");
@@ -308,7 +306,7 @@ else
 	$nommaiuscolo = ucfirst($nom);
 	$codfmaiuscolo = strtoupper($codf);
 
-  $sql = "INSERT INTO utente (CodiceFiscale,Cognome,Email,Indirizzi,Nome,Password,Privilegi,Telefono) VALUES ('$codfmaiuscolo','$cogmaiuscolo','$email','$indi','$nommaiuscolo','$pass','0','$tel')";
+  $sql = "INSERT INTO utente (CodiceFiscale,Cognome,Email,Indirizzi,Nome,Password,Telefono) VALUES ('$codfmaiuscolo','$cogmaiuscolo','$email','$indi','$nommaiuscolo','$pass','$tel')";
 		if ($conn->query($sql)===true) {
 		  	//condizione che va a verificare se il bottone e stato schiacciato, nel momento in cui il bottone viene schiacciato allora ti manda alla prossima pagina salvando anche tutto nel database
 		  	if(isset($_POST['submit'])){

@@ -35,13 +35,9 @@
 	<title>Restituzione</title>
 		</head>
 		<body>
-			
-		
 			<?php
-
-			
-			include "../header.php";
-			echo "<br>";
+				include "../header.php";
+				echo "<br>";
 
 				$codicePrestito = "";
 				$err_codPrestito = "";
@@ -61,7 +57,7 @@
 				}
 				
 				//$sql = "SELECT CodiceCopia, CodicePrenotazione, FinePrestito, InizioPrestito, StatoPrestito FROM prestito";
-				$sql = "SELECT * FROM prestito WHERE StatoPrestito!='restituito'";
+				$sql = "SELECT * FROM prestito WHERE StatoPrestito !='restituito'";
 				$result = $conn->query($sql);
 
 				if ($result->num_rows > 0) {
