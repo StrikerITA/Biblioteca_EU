@@ -210,13 +210,7 @@ if (isset ($_POST["submit"])){
 	
 	//caricare dalle variabili e non dai post
 	//caricare solo il codice fiscale, il resto è superfluo, non verranno mai usati questi dati
-	$_SESSION["telefono"] = $_POST["telefono"];
-	$_SESSION["nome"] = $_POST["name"];
-	$_SESSION["cognome"] = $_POST["surname"];
-	$_SESSION["password"] = $_POST["password"];
-	$_SESSION["email"] = $_POST["email"];
-	$_SESSION["codice_fiscale"] = $_POST["codice_fiscale"];
-	$_SESSION["indirizzo"] = $_POST["indirizzo"];
+	$_SESSION["codice_fiscale"] = $codf;
 }
 
 //FUNZIONE che controlla l'inserimento dei caratteri speciali

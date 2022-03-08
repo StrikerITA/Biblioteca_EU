@@ -5,11 +5,24 @@
 </head>
 <body>
     <div>
-        <span>IL TUO LIBRO E' STATO PRENOTATO CORRETTAMENTE:</span>
-        <br>
-        
-            <a href="/Biblioteca_polizzi/index.php" style="color: white;">Torna alla home</a>
-
+        <br>        
+        <span>PRENOTA QUI IL TUO LIBRO:</span>
+        <br><br>
+        <form action="Prenotazioni.php" method="POST">
+            <span>
+                Data Prenotazioni: <input type="date" name="DataPrenotazione" value=""><br>
+            </span>
+            <span>
+                Codice Fiscale: <input type="varchar" name="CodiceFiscale" value=""><br>
+            </span>
+            <span>
+                Codice Libro: <input type="int" name="CodiceLibro" value=""><br> 
+            </span>
+            <br>
+            <button onclick="">
+                Invia
+            </button>
+        </form>
     </div>
 </body>
 </html>

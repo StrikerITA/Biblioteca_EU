@@ -50,7 +50,7 @@ if (!empty($codf)and !empty($email)and !empty($pass))
 	  $sql = "SELECT Email FROM utente WHERE Email = '$email'";
 	  $sql2 = "SELECT CodiceFiscale FROM utente WHERE CodiceFiscale = '$codf'";
 	  $sql3 = "SELECT Password FROM utente WHERE Password = '$pass'";
-	  $sql4="SELECT Privilegi";
+	  $sql4 = "SELECT Privilegi";
 
 		//si no faccio io
 	$result = $conn->query($sql);

@@ -37,10 +37,10 @@
 					<input required placeholder="Numero Copie" type="number" class="form-control" name="numeroCopie">
 				</div>
 
-				<div class="col-md-4">
+				<!--<div class="col-md-4">
 					<label for="[]" class="form-label"></label>
 					<input required placeholder="Copie Disponibili" type="number" class="form-control" name="copieDisponibili">
-				</div>
+				</div>-->
 				
 				<div class="col-md-4">
 					<label for="[]" class="form-label"></label>
@@ -50,7 +50,31 @@
 				<!-- Si potrebbe aggiungere una dropbox con la scelta delle categorie già esistenti -->
 				<div class="col-md-4">
 					<label for="[]" class="form-label"></label>
-					<input required placeholder="Codice Categoria" type="text"  class="form-control" name="codiceCategoria">
+							
+					<select require class="form-select form-select-lg mb-3" name="codiceCategoria">
+					<option selected>Scegli categoria</option>
+						<?php
+							$servername="localhost";
+							$username="root";
+							$password="";
+							$dbname="biblioteca";
+
+							$conn = new mysqli($servername, $username, $password, $dbname);
+							if ($conn->connect_error) {
+								die("Connection failed: " . $conn->connect_error);
+							}
+							$sql = "SELECT codiceCategoria, nomeCategoria FROM categoria";
+							$result = $conn->query($sql);
+							if ($result->num_rows > 0) {
+								
+								while($row = $result->fetch_assoc()) {
+									echo '<option value="'.$row["codiceCategoria"].'">'.$row["nomeCategoria"].'</option>';
+								}
+							} else {
+								echo "ERRORE: NON ESISTE ALCUNA CATEGORIA";
+							}						
+						?>
+						</select>
 				</div>
 
 				<!--<div class="col-md-4">
@@ -83,7 +107,7 @@
 					$pagine = $_POST["pagine"];
 					$ultimoPrezzo = $_POST["ultimoPrezzo"];
 					$numeroCopie = $_POST["numeroCopie"];
-					$copieDisponibili = $_POST["copieDisponibili"];
+					$copieDisponibili = $_POST["numeroCopie"];
 					$codiceCategoria = $_POST["codiceCategoria"];
 					//$codiceLibro = $_POST["codiceLibro"];
 

@@ -5,25 +5,8 @@
     </head>
     <body>
     <?php include "../header.php";?>
-
-        <div>
-            <span>PRENOTA QUI IL TUO LIBRO:</span>
-            <br><br>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="POST">
-                <span>
-                    Data Prenotazioni: <input type="date" name="DataPrenotazione" value=""><br>
-                </span>
-                <span>
-                    Codice Fiscale: <input type="varchar" name="CodiceFiscale" value=""><br>
-                </span>
-                <span>
-                    Codice Libro: <input type="int" name="CodiceLibro" value=""><br> 
-                </span>
-                <br>
-                <input type="submit">
-            </form>
-        </div>
         <?php
+            //modificare il codice per far si che faccia la prenotazione, poi deve verificare il file
             function alert($msg) {
                 echo "<script type='text/javascript'>alert('$msg');</script>";
             }
@@ -37,7 +20,6 @@
 
                 //dati utente
                 if(!empty($_POST["DataPrenotazione"]) && !empty($_POST["CodiceFiscale"]) && !empty($_POST["CodiceLibro"])){
-                    echo "pino";
                     $DataPrenotazione = $_POST["DataPrenotazione"];
                     $CodiceFiscale = $_POST["CodiceFiscale"];
                     $CodiceLibro = $_POST["CodiceLibro"];
@@ -51,39 +33,38 @@
                         die("Connection failed: " . $connessione->connect_error);
                     }
                     
-                    $sql_copie = "SELECT NumeroCopie FROM libro WHERE CodiceLibro = '$CodiceLibro'";
+                    $sql_copie = "SELECT CopieDisponibili FROM libro WHERE CodiceLibro = '$CodiceLibro'";
                     $result = $connessione->query($sql_copie);
-                    echo $result;
+                    $row = $result->fetch_assoc();
 
-                    if($result->num_rows > 0){
-                        $sql = "INSERT INTO prenota (DataPrenotazione, CodiceFiscale, CodiceLibro) VALUES ('$DataPrenotazione', '$CodiceFiscale', '$CodiceLibro')";
+                    if($row["CopieDisponibili"] > 0){
+                        $sql = "INSERT INTO prenota (DataPrenotazione, CodiceFiscale, CodiceLibro, StatoPrenotazione) VALUES ('$DataPrenotazione', '$CodiceFiscale', '$CodiceLibro', '$StatoPrenotazione')";
 
                         //inserimento nel database
                         if($connessione->query($sql) === TRUE) {
-                            echo "Prenotazione aggiunta con successo";
+                            //alert("Prenotazione aggiunta con successo");
+                            //messaggio spostato dopo l'aggiornamento copie
                         } else {
-                            echo "Error: " . $sql . "<br>" . $connessione->error;
+                            echo "Errore nella prenotazione, il libro non è stato prenotato";
                         }
-                        
-                        $row = $result->fetch_assoc();
 
                         //NON CONVERTE L'OBJ IN STRING E DA STRING IN INT
-                        $num_copie = $row["NumeroCopie"]; // sottrae le copie
+                        $num_copie = $row["CopieDisponibili"]; // sottrae le copie
                         $num_copie = $num_copie - 1;
-                        alert($num_copie);
                         $sql = "UPDATE libro SET CopieDisponibili = '$num_copie' WHERE CodiceLibro = '$CodiceLibro'";
 
                         //cambia il record nel database
                         if($connessione->query($sql) === TRUE){
-                            alert("Copie aggiornate");
+                            //ha aggiornato le copie e fa un alert 
+                            alert("Prenotazione aggiunta con successo");
                         }else{
-                            alert("Impossibile aggiornare le copie disponibili!");
+                            echo "Impossibile aggiornare le copie disponibili!";
                         }
 
                     }else{
-                        alert("Non ci sono copie disponibili!");
+                        alert("Non ci sono copie disponibili del libro selezionato!");
                     }
-                    header('Location: test.html'); //sostituire test.html con la pagina successiva
+                    header('Location: /Biblioteca_polizzi/index.php');
                     $connessione->close();
                 }
             }
