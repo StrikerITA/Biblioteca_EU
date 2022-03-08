@@ -6,6 +6,9 @@
 	</head>
 
 	<body>
+		
+
+
 		<?php
 			include "../header.php";
 		?>
@@ -46,12 +49,12 @@
 					<label for="[]" class="form-label"></label>
 					<input required placeholder="Ultimo Prezzo" type="number" step="0.01" class="form-control" name="ultimoPrezzo">
 				</div>
-
 				<!-- Si potrebbe aggiungere una dropbox con la scelta delle categorie già esistenti -->
 				<div class="col-md-4">
 					<label for="[]" class="form-label"></label>
 							
-					<select require class="form-select form-select-lg mb-3" name="codiceCategoria">
+				
+					<select require class="form-select" name="codiceCategoria">
 					<option selected>Scegli categoria</option>
 						<?php
 							$servername="localhost";
@@ -74,7 +77,7 @@
 								echo "ERRORE: NON ESISTE ALCUNA CATEGORIA";
 							}						
 						?>
-						</select>
+						</select>		
 				</div>
 
 				<!--<div class="col-md-4">

@@ -4,6 +4,11 @@
         <link rel="stylesheet" href="/Biblioteca_polizzi/css/bootstrap.min.css">
         <link rel="stylesheet" href="/Biblioteca_polizzi/css/style.css">
         <script src="https://kit.fontawesome.com/15ee1b0016.js" crossorigin="anonymous"></script>
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
     </head>
     <body>
         <nav class="navbar navbar-expand navbar-light" style="background-color: rgb(255, 181, 43);">
@@ -21,6 +26,16 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                 <?php
+                    if (session_status() == PHP_SESSION_ACTIVE) {
+                        if($_SESSION["privilegi"]==0){
+                            echo"non hai privilegi";
+                        }else{
+                          echo "hai privilegi";
+                      }
+                        
+                      }
+                    
+
                 /*
                 if (session_status() === PHP_SESSION_NONE) {
                     session_start();

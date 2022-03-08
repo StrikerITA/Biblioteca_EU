@@ -50,7 +50,7 @@ if (!empty($codf)and !empty($email)and !empty($pass))
 	  $sql = "SELECT Email FROM utente WHERE Email = '$email'";
 	  $sql2 = "SELECT CodiceFiscale FROM utente WHERE CodiceFiscale = '$codf'";
 	  $sql3 = "SELECT Password FROM utente WHERE Password = '$pass'";
-	  $sql4 = "SELECT Privilegi";
+	  $sql4 = "SELECT Privilegi FROM utente WHERE CodiceFiscale = '$codf' " ;
 
 		//si no faccio io
 	$result = $conn->query($sql);
@@ -58,6 +58,7 @@ if (!empty($codf)and !empty($email)and !empty($pass))
 	$result2 = $conn->query($sql2);
 
 	$result3 = $conn->query($sql3);
+	$result4 = $conn->query($sql4);
 
 		//COSA STO VEDENDO??? "and" dentro ad un if....
 		if ($result->num_rows>0 and $result2->num_rows>0 and $result3->num_rows>0)
@@ -65,9 +66,10 @@ if (!empty($codf)and !empty($email)and !empty($pass))
 			echo " ti abbiamo trovato l'account, ti stiamo collegando...";
 			session_start();
 
-
+			$priv=$result4->fetch_assoc();
 			$_SESSION = array(
-    		'test' => true);
+    		'test' => true,
+			'privilegi'=>$priv);
 
 
             header("Location: /Biblioteca_polizzi/index.php");

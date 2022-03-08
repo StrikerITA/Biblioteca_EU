@@ -18,13 +18,19 @@
 
             if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+                $CodiceLibro = $_POST["codiceLibro"];
+                echo $CodiceLibro;
+                
+
                 //dati utente
                 if(!empty($_POST["DataPrenotazione"]) && !empty($_POST["CodiceFiscale"]) && !empty($_POST["CodiceLibro"])){
                     $DataPrenotazione = $_POST["DataPrenotazione"];
                     $CodiceFiscale = $_POST["CodiceFiscale"];
-                    $CodiceLibro = $_POST["CodiceLibro"];
+                    
                     $StatoPrenotazione = "attesa";
-
+                    $CodiceLibro = $_POST["codiceLibro"];
+                    echo $CodiceLibro;
+                    
                     // Creazione connessione
                     $connessione = new mysqli($servername, $username, $password, $dbname);
                     
