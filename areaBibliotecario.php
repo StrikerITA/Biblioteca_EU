@@ -26,7 +26,7 @@ include "header.php";
 </div>
 
 <div class="btn btn-dark col m-1">
-        <a href="restituzione/restituzione.php" style="color:white;">Restituzione</a>
+        <a href="restituzione/cercaPrestito.php" style="color:white;">Restituzione</a>
     </div>
 </div>
 

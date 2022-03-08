@@ -165,6 +165,8 @@
 					case "image/gif":
 						return true;
 						break;
+					
+						break;
 					default:
 						return false;
 						break;
@@ -187,6 +189,7 @@
 					case "image/gif":
 						return ".gif";
 						break;
+					
 					default:
 						return false;
 						break;

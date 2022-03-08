@@ -38,7 +38,7 @@
 			$result = $conn -> query($sql);
 			$row = $result->fetch_assoc();
 			$CodiceLibro_ricercato = $row["CodiceLibro"];
-			$sql_datilibro = "SELECT  Titolo, Autore, Editore, Descrizione FROM libro WHERE CodiceLibro = '$CodiceLibro_ricercato'";
+			$sql_datilibro = "SELECT  Titolo, Autore, Editore, Descrizione, Immagine FROM libro WHERE CodiceLibro = '$CodiceLibro_ricercato'";
 
 			//entra solo se abbiamo scelto la select
 			if($select == "0" || $select == "1"){
@@ -69,7 +69,7 @@
 						echo "
 						<div class='row'>
 							<div class='col-3'>
-								<img width='500' height='500' class='img-thumbnail' src='/Biblioteca_polizzi/Inserimento/Immagini/".$immagine."'/>
+								<img width='500' height='500' class='img-thumbnail' src='/Biblioteca_polizzi/Inserimento/Immagini/". $row["Immagine"]."'/>
 							</div>
 							<div class='col-4'>
 							<div class='row'>

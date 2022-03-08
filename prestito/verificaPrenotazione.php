@@ -17,7 +17,7 @@
 
         $codicePrenotazione = $_POST["codicePrenotazione"];
 
-        $query = "SELECT * FROM prenota WHERE CodicePrenotazione='$codicePrenotazione' AND statoPrenotazione != 'prenotato'";
+        $query = "SELECT * FROM prenota WHERE CodicePrenotazione='$codicePrenotazione' AND statoPrenotazione = 'attesa'";
         $result = $conn->query($query);
 
         if($result->num_rows>0){

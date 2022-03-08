@@ -37,6 +37,7 @@
 
                 //dati utente
                 if(!empty($_POST["DataPrenotazione"]) && !empty($_POST["CodiceFiscale"]) && !empty($_POST["CodiceLibro"])){
+                    echo "pino";
                     $DataPrenotazione = $_POST["DataPrenotazione"];
                     $CodiceFiscale = $_POST["CodiceFiscale"];
                     $CodiceLibro = $_POST["CodiceLibro"];
@@ -52,6 +53,7 @@
                     
                     $sql_copie = "SELECT NumeroCopie FROM libro WHERE CodiceLibro = '$CodiceLibro'";
                     $result = $connessione->query($sql_copie);
+                    echo $result;
 
                     if($result->num_rows > 0){
                         $sql = "INSERT INTO prenota (DataPrenotazione, CodiceFiscale, CodiceLibro) VALUES ('$DataPrenotazione', '$CodiceFiscale', '$CodiceLibro')";

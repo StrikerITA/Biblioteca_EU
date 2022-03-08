@@ -51,13 +51,20 @@
 				$dbname = "biblioteca";
 					
 				$conn = new mysqli($servername, $username, $password, $dbname);
+				
+				$nome = $_POST['nomeLibro'];
 
 				if ($conn->connect_error) {
 					die("Connection failed: " . $conn->connect_error);
 				}
 				
-				//$sql = "SELECT CodiceCopia, CodicePrenotazione, FinePrestito, InizioPrestito, StatoPrestito FROM prestito";
-				$sql = "SELECT * FROM prestito WHERE StatoPrestito !='restituito'";
+				// $sql = "SELECT CodiceCopia, CodicePrenotazione, FinePrestito, InizioPrestito, StatoPrestito FROM prestito";
+				// $sql = "SELECT * FROM prestito WHERE StatoPrestito !='restituito' AND ";
+				$sql = "select Titolo, CodiceFiscale, CodiceCopia
+				from prestito, prenota, libro
+				where prenota.CodicePrenotazione=prestito.CodicePrenotazione and prenota.CodiceLibro = libro.CodiceLibro
+				and titolo='$nome';";
+
 				$result = $conn->query($sql);
 
 				if ($result->num_rows > 0) {
@@ -67,11 +74,10 @@
 
 
 						<tr>
-							<th scope="col">Codice Prestito</th>
-							<th scope="col">Inizio Prestito</th>
-							<th scope="col">Fine Prestito</th>
-							<th scope="col">Stato Prestito</th>
-							<th scope="col">Codice Copia</th>
+							<th scope="col">Titolo</th>
+							<th scope="col">Codice Fiscale</th>
+							<th scope="col">Numero Copia</th>
+							<th scope="col">Restituisci</th>
 						</tr>
 					</thead>';
 
@@ -80,12 +86,10 @@
 					while($row = $result->fetch_assoc()) {
 						echo '
 							<tr>
-								<td>'.$row["CodicePrenotazione"].'</td>
-								<td>'.$row["InizioPrestito"].'</td>
-								<td>'.$row["FinePrestito"].'</td>
-								<td>'.$row["StatoPrestito"].'</td>
-								<td>'.$row["CodiceCopia"].'</td>
-								
+								<td>'.$row["Titolo"].'</td>
+								<td>'.$row["CodiceFiscale"].'</td>
+								<td>'.$row["CodiceCopia"].'</td>	
+								<td>' . '<form method="post"><button>clicca</button></form>' . '</td>						
 							</tr>
 						';
 					}
@@ -159,10 +163,6 @@
 				}
 				
 			?>		
-			<form method = "post">
-				<br>Inserisci il codice del prestito interessato: <input type="text" name="codPrestito"><span> <?php echo "*".$err_codPrestito; ?> </span>
-				<br><br><input type="submit" value="Restituzione">
-			</form>
 			
 		</body>
 	</html>
