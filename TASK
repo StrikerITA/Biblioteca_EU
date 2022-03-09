@@ -1,10 +1,12 @@
 RICCU
-- gestione restituzione (parte grafica e funzionale)
-- ricerca per nome libro - > deve restituire nome utente, nome libro, data prenotazione
++ gestione restituzione (parte grafica e funzionale)
++ ricerca per nome libro - > deve restituire nome utente, nome libro, data prenotazione
+- sostituire CODICE FISCALE con NOME e COGNOME quando da i dati
 
 Mipos
 + registrazione.php deve mandare i dati ad un altro file 
 + togli tutti i file session apparte codice fiscale e email, leggere i commenti
+- modifica css (in fase di ottimizzazione) ASPETTARE RICCA - POLI
 
 Loki
 - creare 5 prenotazioni che diventano 5 prestiti
@@ -12,9 +14,17 @@ Loki
 
 RICCA
 + creare la prenotazione se va a buon fine mostra verde, se no rosso
-- usare i session
-- sistemare i session nel login (opzionale)
++ usare i session
++ sistemare i session nel login (opzionale)
 + sistemare la registrazione ## FATTO FINALMENTE, ORA IL CODICE è LEGGIBILE
+- togliere il campo CODICE FISCALE in login
+- passare il CODICE FISCALE nella session prendendola dalla query
 
 ## TASK PER CHIUNQUE VOLESSE ## -------
 + FIX stampa libro, ti stampa due volte primo levi
+
+POLI
+- impedire l'accesso alle aree riservate
+- aggiungere session in prenotazione
+- modificare data in prenotazione e impostare +7 giorni
+- fix inserimento nell'area bibliotecario

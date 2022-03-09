@@ -78,6 +78,11 @@
 						<td><th>". $row["Titolo"].  $row["Descrizione"]. "
 						<img width='500' height='500' class='img-thumbnail' src='/Biblioteca_polizzi/Inserimento/Immagini/".$immagine."'/>"."</td>
 						</tr>";*/
+
+
+
+
+						
 						echo "<form action=". "/Biblioteca_polizzi/prenotazione/Prenotazioni.php"." method='POST'>";
 						echo "
 						<div class='row'>
