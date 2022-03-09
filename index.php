@@ -15,9 +15,9 @@ include "header.php";
 include "ricerca/ricerca_1.php";
 
 
-if (session_status() !== PHP_SESSION_NONE) {
-    echo $_SESSION["favcolor"];
-}
+//if (session_status() !== PHP_SESSION_NONE) {
+//    echo $_SESSION["favcolor"];
+//}
 
 ?>
 <?php

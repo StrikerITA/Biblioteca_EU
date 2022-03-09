@@ -9,7 +9,17 @@
 	
 	<?php
 		include "../header.php";
-		echo '<br><br><br>';
+		
+		if (!isset($_SESSION["CodiceFiscale"] )) {
+			echo "<br>";
+			echo "<span class='alert alert-warning'> Per prenotare un libro prima devi accedere</span>";
+			echo "<br><br>";
+		}else{
+			echo "<br>";
+			echo "<span class='alert alert-warning'> Una volta prenotato un libro hai 7 giorni per andare a ritirarlo</span>";
+			echo "<br><br>";
+		}
+
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$select = $_POST["selezione"];
 			$text = $_POST["testo"];
@@ -84,11 +94,17 @@
 								</div>
 								
 							</div>
-							<input type='hidden' value='".$row["CodiceLibro"]."' name='codiceLibro' >
+							<input type='hidden' value='".$row["CodiceLibro"]."' name='codiceLibro' >";
+
+							if (isset($_SESSION["CodiceFiscale"] )) {
+								echo "<div class='col-5'><button >Prenota</button></div>";
+                            }else{
+								echo "<div class='col-5'><button disabled>Prenota</button></div>";
+							}
+
+
 							
-							<div class='col-5'><button>Prenota</button></div>
-						</div>
-						";
+						echo "</div>";
 						echo "<br>";
 
 						echo "</form>";

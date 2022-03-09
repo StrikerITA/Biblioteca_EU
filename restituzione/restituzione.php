@@ -63,7 +63,7 @@
 				$sql = "select Titolo, CodiceFiscale, CodiceCopia, prestito.CodicePrenotazione
 				from prestito, prenota, libro
 				where prenota.CodicePrenotazione=prestito.CodicePrenotazione and prenota.CodiceLibro = libro.CodiceLibro
-				and titolo like '%$nome%';";
+				and titolo like '%$nome%' AND prestito.statoPrestito<>'restituito';";
 
 				$result = $conn->query($sql);
 

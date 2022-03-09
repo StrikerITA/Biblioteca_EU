@@ -14,6 +14,7 @@ RICCA
 + creare la prenotazione se va a buon fine mostra verde, se no rosso
 - usare i session
 - sistemare i session nel login (opzionale)
++ sistemare la registrazione ## FATTO FINALMENTE, ORA IL CODICE è LEGGIBILE
 
 ## TASK PER CHIUNQUE VOLESSE ## -------
 + FIX stampa libro, ti stampa due volte primo levi

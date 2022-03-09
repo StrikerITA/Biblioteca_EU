@@ -17,39 +17,49 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link text-white"  href="/Biblioteca_polizzi/index.php">Home</a>
+                        <a  class="nav-link text-white"  href="/Biblioteca_polizzi/index.php">Home</a>
                     </li>
-                    <li class="nav-item active">
-                    <a class="nav-link text-white" href="/Biblioteca_polizzi/areaBibliotecario.php">Area Bibliotecario</a>
-                    </li>
-                    
+
+                    <?php
+                        if (session_status() == PHP_SESSION_ACTIVE) {
+                            if (isset($_SESSION["privilegi"])) {   
+                                if($_SESSION["privilegi"]==1){
+                                    echo '<li class="nav-item active">
+                                    <a class="nav-link text-white" href="/Biblioteca_polizzi/areaBibliotecario.php">Area Bibliotecario</a>
+                                    </li>';
+                                }
+
+                            }                            
+                        }else{
+                            session_start();
+
+                            if (isset($_SESSION["privilegi"])) {   
+                                if($_SESSION["privilegi"]==1){
+                                    echo '<li class="nav-item active">
+                                    <a class="nav-link text-white" href="/Biblioteca_polizzi/areaBibliotecario.php">Area Bibliotecario</a>
+                                    </li>';
+                                }
+
+                            } 
+                        }
+                    ?>    
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                <?php
-                    if (session_status() == PHP_SESSION_ACTIVE) {
-                        if($_SESSION["privilegi"]==0){
-                            echo"non hai privilegi";
+                    <?php
+                        if(isset($_SESSION["CodiceFiscale"])){
+                            echo '<li class="nav-item">
+                            <a class="nav-link text-white" href="/Biblioteca_polizzi/logout.php">log out</a>
+                        </li>';
                         }else{
-                          echo "hai privilegi";
-                      }
-                        
-                      }
+                            echo '<li class="nav-item text-white">
+                            <a class="nav-link text-white" href="/Biblioteca_polizzi/login_registrazione/login.php">Log In</a>
+                        </li>';
+                        }
+                    ?>
+
                     
-
-                /*
-                if (session_status() === PHP_SESSION_NONE) {
-                    session_start();
-                }else if (session_status() !== PHP_SESSION_NONE) {
-                    echo $_SESSION["favcolor"];
-                }*/
-
-                ?>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/Biblioteca_polizzi/login_registrazione/registrazione.php">Registrazione</a>
-                    </li>
-                    <li class="nav-item text-white">
-                        <a class="nav-link text-white" href="/Biblioteca_polizzi/login_registrazione/login.php">Log In</a>
-                    </li>
+                    
+                    
                     
                 </ul>
             </div>

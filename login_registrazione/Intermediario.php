@@ -64,12 +64,24 @@ if (!empty($codf)and !empty($email)and !empty($pass))
 		if ($result->num_rows>0 and $result2->num_rows>0 and $result3->num_rows>0)
 		{
 			echo " ti abbiamo trovato l'account, ti stiamo collegando...";
-			session_start();
-
+			//session_start();
+			$codfisc=$result2->fetch_assoc();
 			$priv=$result4->fetch_assoc();
-			$_SESSION = array(
-    		'test' => true,
-			'privilegi'=>$priv);
+
+			if (session_status() == PHP_SESSION_ACTIVE) {
+				$_SESSION["privilegi"]=$priv["Privilegi"];
+				$_SESSION["CodiceFiscale"]=$codfisc["CodiceFiscale"];
+			  }else{
+				  session_start();
+				  $_SESSION["privilegi"]=$priv["Privilegi"];
+				$_SESSION["CodiceFiscale"]=$codfisc["CodiceFiscale"];
+
+			  }
+
+			$_SESSION["privilegi"]=$priv["Privilegi"];
+			$_SESSION["CodiceFiscale"]=$codfisc["CodiceFiscale"];
+
+			
 
 
             header("Location: /Biblioteca_polizzi/index.php");
