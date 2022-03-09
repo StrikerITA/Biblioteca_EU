@@ -91,7 +91,7 @@ if (!empty($codf)and !empty($email)and !empty($pass))
 		  	echo " ERRORE I dati introdotti non sono collegati a nessun account ! Reintroduci i dati! ";
 
 
-              sleep(1000);
+              sleep(100);
               header("Location: /Biblioteca_polizzi/login_registrazione/login.php");
 		}
 

@@ -1,5 +1,13 @@
 <?php
     include "../header.php";
+    if (isset($_SESSION["privilegi"])) {   
+        if(!$_SESSION["privilegi"]==1){
+            header("Location: /Biblioteca_polizzi/deniedAccess.php");
+        }
+    }else{
+        header("Location: /Biblioteca_polizzi/deniedAccess.php");
+    }
+
     $servername = "localhost";
     $username = "root";
     $password = "";

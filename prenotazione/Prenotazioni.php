@@ -10,6 +10,12 @@
             function alert($msg) {
                 echo "<script type='text/javascript'>alert('$msg');</script>";
             }
+            function alertRedirect($msg,$redirect){
+                echo '<script type="text/javascript">
+                alert("' . $msg . '")
+                window.location.href = "'.$redirect.'"
+                </script>';
+            }
 
             $servername = "localhost";
             $username = "root";
@@ -19,16 +25,23 @@
             if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 $CodiceLibro = $_POST["codiceLibro"];
-                echo $CodiceLibro;
+                
+                $CodiceFiscale=$_SESSION["CodiceFiscale"];
+                
+                $dateEnd = date_create(date("l"));
+
+                $dateEnd = date_modify($dateEnd, '+7 days');
+                $DataPrenotazione = date_format($dateEnd, 'Y/m/d');
+                
+        
                 
 
                 //dati utente
-                if(!empty($_POST["DataPrenotazione"]) && !empty($_POST["CodiceFiscale"]) && !empty($_POST["CodiceLibro"])){
-                    $DataPrenotazione = $_POST["DataPrenotazione"];
-                    $CodiceFiscale = $_POST["CodiceFiscale"];
+                //if(!empty($_POST["CodiceLibro"])){
+                    
                     
                     $StatoPrenotazione = "attesa";
-                    $CodiceLibro = $_POST["codiceLibro"];
+                    //$CodiceLibro = $_POST["codiceLibro"];
                     echo $CodiceLibro;
                     
                     // Creazione connessione
@@ -62,7 +75,7 @@
                         //cambia il record nel database
                         if($connessione->query($sql) === TRUE){
                             //ha aggiornato le copie e fa un alert 
-                            alert("Prenotazione aggiunta con successo");
+                            //alert("Prenotazione aggiunta con successo");
                         }else{
                             echo "Impossibile aggiornare le copie disponibili!";
                         }
@@ -70,9 +83,12 @@
                     }else{
                         alert("Non ci sono copie disponibili del libro selezionato!");
                     }
-                    header('Location: /Biblioteca_polizzi/index.php');
+
+                        
+                    alertRedirect("Deve ritirare il libro entro il ".date_format($dateEnd, 'd/m/y'), "/Biblioteca_polizzi/index.php");
+                    //header('Location: /Biblioteca_polizzi/index.php');
                     $connessione->close();
-                }
+                //}
             }
         ?>
     </body>

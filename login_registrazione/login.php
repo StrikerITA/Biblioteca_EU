@@ -31,6 +31,12 @@
 				Clicca <a href="/Biblioteca_polizzi/login_registrazione/registrazione.php"> registrati</a>! 
 			</p>
 		</td>
+
+		<?php
+			include "../footer.html";
+		?>
+
 	</body>
+
 </html>
 	

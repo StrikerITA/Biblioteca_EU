@@ -1,6 +1,16 @@
 <?php
     include "../header.php";
 ?>
+<?php
+if (isset($_SESSION["privilegi"])) {   
+    if(!$_SESSION["privilegi"]==1){
+        header("Location: /Biblioteca_polizzi/deniedAccess.php");
+    }
+}else{
+    header("Location: /Biblioteca_polizzi/deniedAccess.php");
+}
+
+?>
 <div class="p-5 py-5 my-5 text-center container" style="background-color: #eee;">
     <h1>Verifica la Prenotazione</h1>
     <?php

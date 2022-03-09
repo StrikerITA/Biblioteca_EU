@@ -164,5 +164,8 @@
 				$conn->close();
 			}
 		?>
+		<?php
+			include "../footer.html";
+		?>
 	</body>
 </html>

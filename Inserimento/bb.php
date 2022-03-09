@@ -11,6 +11,13 @@
 
 		<?php
 			include "../header.php";
+			if (isset($_SESSION["privilegi"])) {   
+				if(!$_SESSION["privilegi"]==1){
+					header("Location: /Biblioteca_polizzi/deniedAccess.php");
+				}
+			}else{
+				header("Location: /Biblioteca_polizzi/deniedAccess.php");
+			}
 		?>
 		<!-- A che servono le label se poi non vengono usate? -->
 		<div class="px-4 py-5 my-5 text-center container" style="background-color: #eee;">

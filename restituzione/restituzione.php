@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
+	<?php
+		if (isset($_SESSION["privilegi"])) {   
+			if(!$_SESSION["privilegi"]==1){
+				header("Location: /Biblioteca_polizzi/deniedAccess.php");
+			}
+		}else{
+			header("Location: /Biblioteca_polizzi/deniedAccess.php");
+		}
+	?>
 	<!-- 
 		Togliere il css da qua e spostarlo in un codice unico
 		Aggiungere Header & Footer

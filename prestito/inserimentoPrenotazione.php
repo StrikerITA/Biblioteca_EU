@@ -2,6 +2,16 @@
 //include $_SERVER['DOCUMENT_ROOT']."/Biblioteca_polizzi/header.html";
 include "../header.php";
 ?>
+<?php
+if (isset($_SESSION["privilegi"])) {   
+    if(!$_SESSION["privilegi"]==1){
+        header("Location: /Biblioteca_polizzi/deniedAccess.php");
+    }
+}else{
+    header("Location: /Biblioteca_polizzi/deniedAccess.php");
+}
+
+?>
 <br>
 <br>
 <br>

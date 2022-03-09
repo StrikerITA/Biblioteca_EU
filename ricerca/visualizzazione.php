@@ -20,9 +20,9 @@
 			echo "<br><br>";
 		}
 
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			$select = $_POST["selezione"];
-			$text = $_POST["testo"];
+		if ($_SERVER["REQUEST_METHOD"] == "GET") {
+			$select = $_GET["selezione"];
+			$text = $_GET["testo"];
 
 			$servername = "localhost";
 			$username = "root";
