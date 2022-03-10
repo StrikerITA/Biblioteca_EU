@@ -10,15 +10,7 @@
 	<?php
 		include "../header.php";
 		
-		if (!isset($_SESSION["CodiceFiscale"] )) {
-			echo "<br>";
-			echo "<span class='alert alert-warning'> Per prenotare un libro prima devi accedere</span>";
-			echo "<br><br>";
-		}else{
-			echo "<br>";
-			echo "<span class='alert alert-warning'> Una volta prenotato un libro hai 7 giorni per andare a ritirarlo</span>";
-			echo "<br><br>";
-		}
+		
 
 		if ($_SERVER["REQUEST_METHOD"] == "GET") {
 			$select = $_GET["selezione"];
@@ -66,7 +58,24 @@
 				//se esiste un libro corrispondente alla ricerca lo stampa
 
 				if($result_dati->num_rows > 0) {
+
 					
+					echo '<div class="px-4 py-5 my-5  container rounded-5 align-middle"  style="background-color: #eee;">';
+
+					if (!isset($_SESSION["CodiceFiscale"] )) {
+						echo "<br>";
+						echo "<h4><span class='alert alert-warning'> Per prenotare un libro prima devi accedere</span></h4>";
+						echo "<br><br>";
+					}else{
+						echo "<br>";
+						echo "<h4><span class='text-light alert alert-warning'> Una volta prenotato un libro hai 7 giorni per andare a ritirarlo</span></h4>";
+						echo "<br><br>";
+
+					}
+
+					echo '<br>';
+
+
 					while($row = $result_dati->fetch_assoc()) {
 						//immagine non viene stampata correttamente 
 						//a video viene visualizzato il percorso dell'immagine
@@ -78,7 +87,9 @@
 						<td><th>". $row["Titolo"].  $row["Descrizione"]. "
 						<img width='500' height='500' class='img-thumbnail' src='/Biblioteca_polizzi/Inserimento/Immagini/".$immagine."'/>"."</td>
 						</tr>";*/
+						echo '
 
+						';
 
 
 
@@ -86,13 +97,14 @@
 						echo "<form action=". "/Biblioteca_polizzi/prenotazione/Prenotazioni.php"." method='POST'>";
 						echo "
 						<div class='row'>
-							<div class='col-3'>
-								<img width='120' height='90'class='img-thumbnail' src='/Biblioteca_polizzi/Inserimento/Immagini/". $row["Immagine"]."'/>
-							</div>
 							<div class='col-4'>
+								<img width='80%' height='60%'class='img-thumbnail' src='/Biblioteca_polizzi/Inserimento/Immagini/". $row["Immagine"]."'/>
+							</div>
+							<div class='col-8'>
 							<div class='row'>
-								<div class='col-6'><h2>".  $row["Titolo"] ."</h2> </div>
-								<div class='col-6'><h3>".  $row["Autore"] ."</h3> </div>
+
+								<div class='row'><h2>".  $row["Titolo"] ."</h2> </div>
+								<div class='row'><h5>".  $row["Autore"] ."</h5> </div>
 								</div>
 								<div class='row'>
 									<h6>".  $row["Descrizione"] ."</h6>
@@ -101,12 +113,17 @@
 							</div>
 							<input type='hidden' value='".$row["CodiceLibro"]."' name='codiceLibro' >";
 
-							if (isset($_SESSION["CodiceFiscale"] )) {
-								echo "<div class='col-5'><button >Prenota</button></div>";
-                            }else{
-								echo "<div class='col-5'><button disabled>Prenota</button></div>";
-							}
+							echo '<div class="row">
+								<div class="col-10"></div>
+							';
 
+							if (isset($_SESSION["CodiceFiscale"] )) {
+								echo "<div class='col-2' ><button class='btn btn-secondary'>Prenota</button></div>";
+                            }else{
+								echo "<div class='col-2'><button  class='btn btn-secondary' disabled>Prenota</button></div>";
+							}
+							
+							echo '</div>';
 
 							
 						echo "</div>";
@@ -119,6 +136,8 @@
 
 
 					}
+
+					echo '</div>';
 					
 				} else {
 					//se non lo trova stampa l'errore
@@ -128,7 +147,10 @@
 			
 			$conn->close();
 		}
+
+		include "../footer.html"
 	?>
 </body>
 </html>
+
 
