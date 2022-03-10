@@ -7,16 +7,7 @@
     <?php include "../header.php";?>
         <?php
             //modificare il codice per far si che faccia la prenotazione, poi deve verificare il file
-            function alert($msg) {
-                echo "<script type='text/javascript'>alert('$msg');</script>";
-            }
-            function alertRedirect($msg,$redirect){
-                echo '<script type="text/javascript">
-                alert("' . $msg . '")
-                window.location.href = "'.$redirect.'"
-                </script>';
-            }
-
+            
             $servername = "localhost";
             $username = "root";
             $password = "";

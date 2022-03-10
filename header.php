@@ -11,6 +11,18 @@
 
     </head>
     <body>
+        <?php
+            function alert($msg) {
+                echo "<script type='text/javascript'>alert('$msg');</script>";
+            }
+            function alertRedirect($msg,$redirect){
+                echo '<script type="text/javascript">
+                alert("' . $msg . '")
+                window.location.href = "'.$redirect.'"
+                </script>';
+            }
+
+        ?>
         <nav class="navbar navbar-expand navbar-light" style="background-color: rgb(255, 181, 43);">
             <span class="navbar-brand text-white" >Biblioteca</span>
 
@@ -55,6 +67,8 @@
                             <a class="nav-link text-white" href="/Biblioteca_polizzi/login_registrazione/login.php">Log In</a>
                         </li>';
                         }
+
+
                     ?>
 
                     

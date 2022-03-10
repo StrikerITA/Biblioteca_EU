@@ -66,13 +66,9 @@ if (isset($_SESSION["privilegi"])) {
     }
 
     if ($esitoQuery) {
-        echo'<div class="alert alert-success" role="alert">
-        Prenotazione realizzata con successo
-    </div>';
+        alertRedirect("Il prestito e stato realizzato con successo","/Biblioteca_polizzi/areaBibliotecario.php");
     }else {
-        echo '<div class="alert alert-danger" role="alert">
-            Prenotazione fallita
-        </div>';
+        alertRedirect("C'e stato un problema con il prestito, per favore riprova", $_SERVER['HTTP_REFERER']);
     }
 
     echo "<a class='btn btn-warning' href='inserimentoPrenotazione.php' style='margin-right:2px;color:white;'>Torna Indietro</a>";

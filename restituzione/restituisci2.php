@@ -44,20 +44,21 @@
                                                                WHERE CodiceLibro=(SELECT CodiceLibro FROM prenota WHERE CodicePrenotazione='$codicePrestito')";
                      
                      if($conn->query($sql)==TRUE){
-                         echo "<br>FUNZIONE 'UPDATE' ANDATA A BUON FINE";
-                         $sql = "SELECT CodiceLibro FROM libro WHERE CopieDisponibili=NumeroCopie AND
+                         
+                         $sql = "SELECT CodiceLibro FROM libro WHERE CopieDisponibili<=NumeroCopie AND
                                 CodiceLibro=(SELECT CodiceCopia FROM prestito WHERE CodicePrenotazione='$codicePrestito')";
                          $result = $conn->query($sql);
                          if($result->num_rows > 0){
                              echo "<br>ERRORE: NUMERO MASSIMO DI COPIE RESTITUITE RAGGIUNTO";
                          }else{
-                             echo "<br>FUNZIONE UPDATE EFFETTUATA CON SUCCESSO";
+                             alertRedirect("Libro restituito con successo","/Biblioteca_polizzi/restituzione/cercaPrestito.php");
+                             
                          }
                      }else{
                         echo "ERRORE DI COMUNICAZIONE: UPDATE"; 
                      }
                 }
-                echo "<br>DATI STAMPATI TRAMITE TABELLA";
+               
             }else{
                 echo "<br>LIBRO GIA' RESTITUITO O CODICE INCORRETTO";
             }

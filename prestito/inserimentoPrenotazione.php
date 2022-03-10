@@ -18,13 +18,13 @@ if (isset($_SESSION["privilegi"])) {
 
 <div class="px-4 py-5 my-5 text-center container" style="background-color: #eee;">
     <h1 class="">Inserirere Prenotazione</h1>
-    <form class="class="was-validated" method="post" action="verificaPrenotazione.php">
+    <form class="class="was-validated" method="get" action="verificaPrenotazione.php">
         <br>
-        <input type="text" class="form-control" required placeholder="Inserire il codice del libro..." name="codicePrenotazione">
+        <input type="text" class="form-control" required placeholder="Inserire il titolo del libro..." name="titolo">
         <div class="valid-feedback">Valid.</div>
         <div class="invalid-feedback">Please fill out this field.</div>
         <br><br>
-        <button  type="submit" class="btn btn-warning " style="color:white">Cerca</button>
+        <button  type="submit" class="btn btn-primary " style="color:white">Cerca</button>
     </form> 
 </div>
 <?php
