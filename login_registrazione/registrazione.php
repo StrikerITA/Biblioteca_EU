@@ -9,29 +9,88 @@
 			include "../header.php";
 			//gestione variabili di sessione
 		?>
-		<p><h1> Registrazione Biblioteca </h1></p>
-		<td> <!-- echo htmlspecialchars($_SERVER["PHP_SELF"]) nell'action wrappato con il php -->
+		
+		<!-- echo htmlspecialchars($_SERVER["PHP_SELF"]) nell'action wrappato con il php -->
+
+		<div class="px-4 py-5 my-5 text-center container rounded-5 align-middle"  style="background-color: #eee;">
+			<p><h1> Registrazione Biblioteca </h1></p>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
-				Nome <input id="inserimento" type="text" name="name" required>
-				<br><br>
-				Cognome <input id="inserimento" type="text" name="surname" required>
-				<br><br>
-				Email <input id="inserimento" type="email" name="email" required>
-				<br><br>
-				Password <input id="inserimento" type="password" name="password" required>
-				<br><br>
-				Codice fiscale <input id="inserimento" type="text" name="codice_fiscale" required>
-				<br><br>
-				Indirizzo <input id="inserimento" type="text" name="indirizzo">
-				<br><br>
-				Telefono <input type="tel" id="inserimento" name="telefono" pattern="[0-9]{3} [0-9]{3} [0-9]{4}">
-				<br><br>
-				<input id=button type="submit" value="Registrati" name="submit">
-				</button>
+			<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+						<label for="[]" class="form-label"></label>		
+						<input placeholder="Nome" id="inserimento" class="form-control px-5" type="text" name="name" required>
+						<label for="[]" class="form-label"></label>	
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+						
+						<input placeholder="Cognome" class="form-control px-5" id="inserimento" type="text" name="surname" required>
+						<label for="[]" class="form-label"></label>
+						
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+						
+						<input placeholder="Email" class="form-control px-5" id="inserimento" type="email" name="email" required>
+						<label for="[]" class="form-label"></label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+						
+						<input placeholder="Password" class="form-control px-5" id="inserimento" type="password" name="password" required>
+						<label for="[]" class="form-label"></label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+						
+						<input placeholder="Codice fiscale" class="form-control px-5" id="inserimento" type="text" name="codice_fiscale" required>
+						<label for="[]" class="form-label"></label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+						
+							<input placeholder="Indirizzo" class="form-control px-5" id="inserimento" type="text" name="indirizzo" required>
+						<label for="[]" class="form-label"></label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+							<input placeholder="Telefono" class="form-control px-5" type="tel" id="inserimento" name="telefono" pattern="[0-9]{3} [0-9]{3} [0-9]{4}">
+						<label for="[]" class="form-label"></label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+					
+						<input  class="btn btn-primary" id=button type="submit" value="Registrati" name="submit">
+					</div>
+				</div>
+
+
+				
+				
+				
 
 			</form>
-		</td>
+		</div>
+		
 		<?php
 			$servername = "localhost";
 			$username = "root";
