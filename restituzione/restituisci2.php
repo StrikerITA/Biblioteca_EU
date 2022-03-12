@@ -30,7 +30,7 @@
             $result = $conn->query($sql);
             
             if($result->num_rows > 0){
-                $sql = "UPDATE prestito SET StatoPrestito='restituito' WHERE CodicePrenotazione='$codicePrestito'";
+                $sql = "UPDATE prestito SET StatoPrestito='restib  b v h  tuito' WHERE CodicePrenotazione='$codicePrestito'";
                 $result = $conn->query($sql);
                 $sql = "UPDATE prenota SET StatoPrenotazione='annullato' WHERE CodicePrenotazione='$codicePrestito'";
                 $result = $conn->query($sql);

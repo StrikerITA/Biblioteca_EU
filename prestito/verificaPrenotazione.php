@@ -29,7 +29,7 @@ if (isset($_SESSION["privilegi"])) {
 
         //$query = "SELECT * FROM prenota WHERE CodicePrenotazione='$codicePrenotazione' AND statoPrenotazione = 'attesa'";
         $query = "SELECT * FROM prenota p, libro l, utente u WHERE p.CodiceLibro=l.CodiceLibro AND p.CodiceFiscale=u.CodiceFiscale
-        AND p.StatoPrenotazione<>'prenotato' AND l.Titolo LIKE '%".$titoloFromPost."%' ";
+        AND (p.StatoPrenotazione<>'prenotato' and p.StatoPrenotazione<>'annullato') AND l.Titolo LIKE '%".$titoloFromPost."%' ";
 
 
         $result = $conn->query($query);
