@@ -44,7 +44,6 @@
                                                                WHERE CodiceLibro=(SELECT CodiceLibro FROM prenota WHERE CodicePrenotazione='$codicePrestito')";
                      
                      if($conn->query($sql)==TRUE){
-                         
                          $sql = "SELECT CodiceLibro FROM libro WHERE CopieDisponibili<=NumeroCopie AND
                                 CodiceLibro=(SELECT CodiceCopia FROM prestito WHERE CodicePrenotazione='$codicePrestito')";
                          $result = $conn->query($sql);

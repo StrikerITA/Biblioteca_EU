@@ -14,12 +14,8 @@
 			<p>
 				<h1> Log-in </h1>
 			</p>
-
-	
 				<!-- action mancante -->
 			<form method="post" action="/Biblioteca_polizzi/login_registrazione/intermediario.php">
-
-				
 				<div class="row">
 					<div class="col-4"></div>
 					<div class="col-4">
@@ -36,16 +32,6 @@
 						<label for="[]" class="form-label"></label>
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-4"></div>
-					<div class="col-4">
-						
-						<input placeholder="Codice Fiscale" class="form-control px-5" id="inserimento" type="text" name="codice_fiscale" required>
-						<label for="[]" class="form-label"></label>
-					</div>
-				</div>
-
 				<div class="row">
 					<div class="col-5"></div>
 					<div class="col-2">
@@ -54,17 +40,13 @@
 				</div>
 			</form>
 				<!-- action va in registrazione.php -->
-				<label class="text-secondary">
-					Non hai ancora un account creato ? Clicca <a href="/Biblioteca_polizzi/login_registrazione/registrazione.php"> registrati</a>! 
-     			</label>
+			<label class="text-secondary">
+				Non hai ancora un account creato ? Clicca <a href="/Biblioteca_polizzi/login_registrazione/registrazione.php"> registrati</a>! 
+     		</label>
 			
 		</div>
-
 		<?php
 			include "../footer.html";
 		?>
-
 	</body>
-
 </html>
-	
