@@ -32,7 +32,7 @@ if (isset($_SESSION["privilegi"])) {
             <div class="container row m-3">
 
             <div class="btn btn-dark col m-1">
-                <a class="text-decoration-none" href="prestito/inserimentoPrenotazione.php" for="Conferma Prenotazione" style="color:white;">Prenotazione</a>
+                <a class="text-decoration-none" href="prestito/inserimentoPrenotazione.php" for="Conferma Prenotazione" style="color:white;">Prestito</a>
             </div>
         
             <div class="btn btn-dark col m-1" >

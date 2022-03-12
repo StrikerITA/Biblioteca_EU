@@ -68,7 +68,7 @@
 						echo "<br><br>";
 					}else{
 						echo "<br>";
-						echo "<h4><span class='text-light alert alert-warning'> Una volta prenotato un libro hai 7 giorni per andare a ritirarlo</span></h4>";
+						echo "<h4><span class=' alert alert-warning'> Una volta prenotato un libro hai 7 giorni per andare a ritirarlo</span></h4>";
 						echo "<br><br>";
 
 					}
@@ -103,8 +103,26 @@
 							<div class='col-8'>
 							<div class='row'>
 
-								<div class='row'><h2>".  $row["Titolo"] ."</h2> </div>
-								<div class='row'><h5>".  $row["Autore"] ."</h5> </div>
+								
+								<div class='row'>
+									<div class='col-10'>
+									<h3>".  $row["Titolo"] ."</h3>
+									 
+									
+									</div>
+									<div class='col-2'>
+										";if (isset($_SESSION["CodiceFiscale"] )) {
+											echo "<div class='col-2' ><button class='btn btn-secondary'>Prenota</button></div>";
+										}else{
+											echo "<div class='col-2'><button  class='btn btn-secondary' disabled>Prenota</button></div>";
+										}
+									echo "
+									</div>
+									
+									<div class='row'><h5>".  $row["Autore"] ."</h5> </div>
+										
+								
+								</div>
 								</div>
 								<div class='row'>
 									<h6>".  $row["Descrizione"] ."</h6>
@@ -117,11 +135,7 @@
 								<div class="col-10"></div>
 							';
 
-							if (isset($_SESSION["CodiceFiscale"] )) {
-								echo "<div class='col-2' ><button class='btn btn-secondary'>Prenota</button></div>";
-                            }else{
-								echo "<div class='col-2'><button  class='btn btn-secondary' disabled>Prenota</button></div>";
-							}
+							
 							
 							echo '</div>';
 

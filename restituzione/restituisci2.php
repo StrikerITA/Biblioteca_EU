@@ -48,13 +48,13 @@
                                 CodiceLibro=(SELECT CodiceCopia FROM prestito WHERE CodicePrenotazione='$codicePrestito')";
                          $result = $conn->query($sql);
                          if($result->num_rows > 0){
-                             echo "<br>ERRORE: NUMERO MASSIMO DI COPIE RESTITUITE RAGGIUNTO";
+                            alertRedirect("Libro restituito con successo","/Biblioteca_polizzi/restituzione/cercaPrestito.php");
                          }else{
-                             alertRedirect("Libro restituito con successo","/Biblioteca_polizzi/restituzione/cercaPrestito.php");
+                            alertRedirect("Libro restituito con successo","/Biblioteca_polizzi/restituzione/cercaPrestito.php");
                              
                          }
                      }else{
-                        echo "ERRORE DI COMUNICAZIONE: UPDATE"; 
+                        alertRedirect("Libro restituito con successo","/Biblioteca_polizzi/restituzione/cercaPrestito.php");
                      }
                 }
                

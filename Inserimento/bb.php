@@ -34,7 +34,7 @@
 
 				<div class="col-md-12">
 					<label for="[]" class="form-label"></label>
-					<textarea required class="form-control" placeholder="Descrizione" name="descrizione"></textarea>
+					<textarea required maxlength="2000" class="form-control" placeholder="Descrizione" name="descrizione"></textarea>
 				</div>
 
 				<div class="col-md-4">
