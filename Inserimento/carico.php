@@ -1,7 +1,4 @@
 <?php
-
-
-
             if($_SERVER["REQUEST_METHOD"] == "POST"){
 				if(!empty($_POST["autore"]) && !empty($_POST["editore"]) && !empty($_POST["titolo"]) && !empty($_POST["descrizione"]) /*&& !empty($_POST["image"])*/ && !empty($_POST["pagine"]) && !empty($_POST["ultimoPrezzo"]) && !empty($_POST["numeroCopie"]) && !empty($_POST["codiceCategoria"])){
 					$autore = $_POST["autore"];
@@ -16,14 +13,6 @@
 					$codiceCategoria = $_POST["codiceCategoria"];
 					//$codiceLibro = $_POST["codiceLibro"];
 
-					// ho aggiunto queste due righe che servono a prendere il nome edil file immagine, ti lascio qui il link per il sito che ho visto
-					// http://talkerscode.com/webtricks/upload%20image%20to%20database%20and%20server%20using%20HTML,PHP%20and%20MySQL.php
-					//$immagine_nome = $_FILES["immagine"]["name"];
-
-
-					//
-
-
 					$tmp = $_FILES['image']['tmp_name']; 
 					$type = $_FILES['image']['type'];
 					$size = $_FILES['image']['size'];
@@ -33,8 +22,7 @@
 					$name = time().rand(0,999); //timestamp attuale + un numero random compreso tra 0 e 999
 					$name = $name.$ext; //aggiungo al nome appena creato l'estensione
 					$immagine=$name;
-					//$name = $folder.$name; //aggiungo il folder di destinazione
-					//esempio risultato finale: folder/timestamp657.gif
+				
 					echo $name;
 					//$immagine=$name;
 					if(move_uploaded_file($_FILES['image']['tmp_name'],"Immagini/".$name)) {
@@ -53,7 +41,7 @@
 							die("Connection failed: " . $conn->connect_error);
 						}
 
-						$sql = "INSERT INTO libro (autore, editore, titolo, descrizione,immagine, pagine, ultimoPrezzo, numeroCopie, copieDisponibili, codiceCategoria)
+						$sql = "INSERT INTO libro (autore, editore, titolo, descrizione, immagine, pagine, ultimoPrezzo, numeroCopie, copieDisponibili, codiceCategoria)
 						VALUES('$autore' , '$editore' , '$titolo' , '$descrizione' , '$immagine' , '$pagine' , '$ultimoPrezzo' , '$numeroCopie' , '$copieDisponibili' , '$codiceCategoria')";
 
 						if($conn->query($sql) === TRUE){
@@ -63,17 +51,11 @@
 							echo "Error: " . "<br>" . $conn->error;
 						}
 						
-						//controlla l'header che da errore ma l'inserimento dei libri ora va
-						//header('Location: Biblioteca_polizzi/ricerca/ricerca_1.php');
 						$conn->close();
 					} else {
 						echo "Non è stato possibile caricare l'immagine<br />";
 					}
 
-					//
-					//$imagetmp = addslashes (file_get_contents($_FILES['immagine']['tmp_name']));
-					
-					
 				}
 			}
 
