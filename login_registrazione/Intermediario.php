@@ -12,7 +12,7 @@
 			$pass = $_POST["password"];
 		}
 
-		if (empty($email)and empty($pass)){
+			if (empty($email)and empty($pass)){
 			$email="";
 			$pass="";
 		}
