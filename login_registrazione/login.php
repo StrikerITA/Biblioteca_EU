@@ -6,15 +6,11 @@
 	<!-- <link rel="stylesheet" href="stilebiblioteca.css"> -->		
 	</head>
 	<body>
-		<?php
-			include "../header.php";
-		?>
-		
+		<?php include "../header.php"; ?>
 		<div class="px-4 py-5 my-5 text-center container rounded-5 align-middle"  style="background-color: #eee;">
 			<p>
 				<h1> Log-in </h1>
 			</p>
-				<!-- action mancante -->
 			<form method="post" action="/Biblioteca_polizzi/login_registrazione/intermediario.php">
 				<div class="row">
 					<div class="col-4"></div>
@@ -24,7 +20,6 @@
 						<label for="[]" class="form-label"></label>
 					</div>
 				</div>
-
 				<div class="row">
 					<div class="col-4"></div>
 					<div class="col-4">
@@ -41,12 +36,9 @@
 			</form>
 				<!-- action va in registrazione.php -->
 			<label class="text-secondary">
-				Non hai ancora un account creato ? Clicca <a href="/Biblioteca_polizzi/login_registrazione/registrazione.php"> registrati</a>! 
+				Non hai ancora creato un account ? Clicca <a href="/Biblioteca_polizzi/login_registrazione/registrazione.php"> registrati</a>! 
      		</label>
-			
 		</div>
-		<?php
-			include "../footer.html";
-		?>
+		<?php include "../footer.html"; ?>
 	</body>
 </html>

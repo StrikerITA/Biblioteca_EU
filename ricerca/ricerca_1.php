@@ -2,9 +2,8 @@
 <html>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="https://kit.fontawesome.com/15ee1b0016.js" crossorigin="anonymous"></script>
-
 	<body>
-		<?php
+		<?php //check testo inserito
 			$err_titolo ="";
 			$testo ="";
 
@@ -19,17 +18,16 @@
 		<form class="row g-3" action="ricerca/visualizzazione.php" method="GET">
 			<!--selezione-->
 			<div class="col-md-2">
-			<select class="form-control" name="selezione">
-				<option value="1">Titolo</option>
-				<option value="0">Autore</option>
-			</select>
+				<select class="form-control" name="selezione">
+					<option value="1">Titolo</option>
+					<option value="0">Autore</option>
+				</select>
 			</div>
+			<!--text-->
 			<div class="col-md-8"> 
 				<input required placeholder="inserire: " class="form-control " name="testo" type="text">
 			</div>
-			<!--text-->
-		
-			<!--botton-->			  
+			<!--button-->			  
 			<div class="col-md-1">
 				<button type="submit" value="Submit" class="btn btn-primary">
 					<i class="fas fa-search"></i>

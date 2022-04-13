@@ -163,7 +163,7 @@
 					$pass = test_input("");
 				}
 			}
-
+			//DA SISTEMARE STE 3 QUERY
 			if (!empty($codf) && !empty($cog) && !empty($email) && !empty($indi) && !empty($nom) && !empty($pass) && !empty($tel)){
 
 				//troppi sql, da convertire in uno solo
