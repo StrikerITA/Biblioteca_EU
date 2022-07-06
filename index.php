@@ -1,24 +1,26 @@
 <head>
     <link rel="stylesheet" href="/Biblioteca_polizzi/ricerca/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 
 <?php
-include "header.html";
+include "header.php";
 ?>
-<br><br>
-
-<a href="ricerca/ricerca 1.php">Ricerca     </a>
-<a href="areaBibliotecario.php">areaBibliotecario    </a>
-
-
-<br><br><br><br>
+<br>
 
 
 <?php
 
-include "ricerca/ricerca 1.php";
+include "ricerca/ricerca_1.php";
 
+
+//if (session_status() !== PHP_SESSION_NONE) {
+//    echo $_SESSION["favcolor"];
+//}
+
+?>
+<?php
 include "footer.html";
 ?>
 

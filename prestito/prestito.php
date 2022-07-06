@@ -1,5 +1,15 @@
 <?php
-    include "./header.html";
+    include "../header.php";
+?>
+<?php
+if (isset($_SESSION["privilegi"])) {   
+    if(!$_SESSION["privilegi"]==1){
+        header("Location: /Biblioteca_polizzi/deniedAccess.php");
+    }
+}else{
+    header("Location: /Biblioteca_polizzi/deniedAccess.php");
+}
+
 ?>
 <?php
 
@@ -21,7 +31,8 @@
         </div>';
     }
 
-    function verificaQuery($result, $conn, $query){
+    function verificaQuery($conn, $query){
+        $esitoQuery=false;
         if($conn->query($query)==TRUE){
             $esitoQuery=true;
         }
@@ -39,32 +50,43 @@
     $dateStartString = date_format($dateStart, 'Y/m/d');
     $dateEndString = date_format($dateEnd, 'Y/m/d');
 
-    $query = "INSERT INTO prestito (CodicePrenotazione, InizioPrestito, FinePrestito, StatoPrestito, CodiceCopia)
+// Selezionare tutte le prenotazione che hanno il codice copia selezionato e lo stato prestato
+    $query = "SELECT * from prestito where CodiceCopia='$codiceCopia' and StatoPrestito='prestato'";
+
+    $result = $conn -> query($query);
+
+    if($result -> num_rows < 1){
+        
+       $query = "INSERT INTO prestito (CodicePrenotazione, InizioPrestito, FinePrestito, StatoPrestito, CodiceCopia)
                 VALUES ('$codicePrenotazione', '$dateStartString', '$dateEndString', 'prestato', '$codiceCopia')";
+    
+        //query fatta con la funzione appositamente creata
+        $esitoQuery = verificaQuery( $conn, $query);
+        
+        if($esitoQuery){
+            echo "true";
+        }else{
+            echo "false";
+        }
+        
+        //in caso di esito positivo 
+        if($esitoQuery){
+            $query = "UPDATE prenota SET StatoPrenotazione='prenotato' WHERE CodicePrenotazione='$codicePrenotazione' ";
+            $esitoQuery = verificaQuery( $conn, $query);  
+        }
 
-    //query fatta con la funzione appositamente creata
-    $esitoQuery = verificaQuery($result, $conn, $query);
+        if ($esitoQuery) {
+            alertRedirect("Il prestito e stato realizzato con successo","/Biblioteca_polizzi/areaBibliotecario.php");
+        }else {
+            alertRedirect("C'e stato un problema con il prestito, per favore riprova", $_SERVER['HTTP_REFERER']);
+        }
 
-    //$query_remove = "UPDATE libro SET CopieDisponibili=CopieDisponibili-1 WHERE CodiceLibro='$codiceCopia'";
-    //$aggiornaStatoPrenotazione = "UPDATE prenota SET StatoPrenotazione='prenotato' WHERE CodicePrenotazione='$codicePrenotazione'";
-
-    //in caso di esito positivo 
-    if($esitoQuery){
-        $query = "UPDATE prenota SET StatoPrenotazione='prenotato' WHERE CodicePrenotazione='$codicePrenotazione'";
-        $esitoQuery = verificaQuery($result, $conn, $query);  
+        echo "<a class='btn btn-warning' href='inserimentoPrenotazione.php' style='margin-right:2px;color:white;'>Torna Indietro</a>"; 
+    }else{
+        alertRedirect("La copia inserita è stata già prestata", $_SERVER['HTTP_REFERER']);
     }
 
-    if ($esitoQuery) {
-        echo'<div class="alert alert-success" role="alert">
-        Prenotazione realizzata con successo
-    </div>';
-    }else {
-        echo '<div class="alert alert-danger" role="alert">
-            Prenotazione fallita
-        </div>';
-    }
-
-    echo "<a class='btn btn-warning' href='inserimentoPrenotazione.php' style='margin-right:2px;color:white;'>Torna Indietro</a>";
+    
 
     include "../footer.html";
 ?>

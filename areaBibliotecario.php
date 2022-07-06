@@ -1,5 +1,5 @@
 <?php
-include "header.html";
+include "header.php";
 ?>
 
 <style>
@@ -7,27 +7,50 @@ include "header.html";
         text-align: center;
     }
     </style>
-<br>
-<br>
-<br>
-    <h1>Vai per </h1>
-<br>
-
-<div class="container row m-3">
 
 
+<?php
+if (isset($_SESSION["privilegi"])) {   
+    if(!$_SESSION["privilegi"]==1){
+        header("Location: /Biblioteca_polizzi/deniedAccess.php");
+    }
+}else{
+    header("Location: /Biblioteca_polizzi/deniedAccess.php");
+}
 
-    <div class="btn btn-dark col m-1">
-        <a href="prestito/inserimentoPrenotazione.php" for="Conferma Prenotazione" style="color:white;">Prenotazione</a>
-    </div>
+?>
+    
 
-    <div class="btn btn-dark col m-1" >
-        <a href="Inserimento/bb.php" for="inserimento" style="color:white;">Inserimento</a>
-</div>
 
-<div class="btn btn-dark col m-1">
-        <a href="restituzione/restituzione.php" style="color:white;">Restituzione</a>
-    </div>
-</div>
+            
+            <br>
+            <br>
+            <br>
+                <h1>Vai per </h1>
+            <br>
+            
+            <div class="container row m-3">
 
+            <div class="btn btn-dark col m-1">
+                <a class="text-decoration-none" href="prestito/inserimentoPrenotazione.php" for="Conferma Prenotazione" style="color:white;">Prestito</a>
+            </div>
+        
+            <div class="btn btn-dark col m-1" >
+                <a class="text-decoration-none" href="Inserimento/bb.php" for="inserimento" style="color:white;">Inserimento</a>
+            </div>
+        
+            <div class="btn btn-dark col m-1">
+                    <a class="text-decoration-none" href="restituzione/cercaPrestito.php" style="color:white;">Restituzione</a>
+            </div>
+        </div>
+        
+       
+
+
+
+
+
+<?php
+include "footer.html";
+?>
 

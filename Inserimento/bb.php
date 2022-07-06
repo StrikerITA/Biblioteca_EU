@@ -1,151 +1,109 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<title>Gestione Biblioteca</title>
-</head>
+	<head>
+		<title>Gestione Biblioteca</title>
+	</head>
 
-<body>
+	<body>
+		
 
-	<?php
-		$Err="";
-		$autore=$editore=$titolo=$descrizione=$immagine=$pagine=$ultimoPrezzo=$numeroCopie=$copieDisponibili=$codiceCategoria="";
-
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-			if (empty($_POST["autore"])) {
-				$Err = "campo richiesto";
-			}else{
-				$autore = $_POST["autore"];
-			}
-
-			 if( empty($_POST["editore"])){
-   	 			$Err = "campo richiesto";
-    		}else{
-   				$editore = $_POST["editore"];
-    		}
-			
-			if( empty($_POST["titolo"])){
-   	 			$Err = "campo richiesto";
-    		}else{
-   				$titolo = $_POST["titolo"];
-    		}
-
-    		if( empty($_POST["descrizione"])){
-   	 			$Err = "campo richiesto";
-    		}else{
-   				$descrizione = $_POST["descrizione"];
-    		}
-
-    		if( empty($_POST["immagine"])){
-   	 			$Err = "campo richiesto";
-    		}else{
-   				$immagine = $_POST["immagine"];
-    		}
-
-    		if( empty($_POST["pagine"])){
-   	 			$Err = "campo richiesto";
-    		}else{
-   				$pagine = $_POST["pagine"];
-    		}
-
-    		if( empty($_POST["ultimoPrezzo"])){
-   	 			$Err = "campo richiesto";
-    		}else{
-   				$ultimoPrezzo = $_POST["ultimoPrezzo"];
-    		}
-
-    		if( empty($_POST["numeroCopie"])){
-   	 			$Err = "campo richiesto";
-    		}else{
-   				$numeroCopie = $_POST["numeroCopie"];
-    		}
-
-    		if( empty($_POST["copieDisponibili"])){
-   	 			$Err = "campo richiesto";
-    		}else{
-   				$copieDisponibili = $_POST["copieDisponibili"];
-    		}
-
-    		if( empty($_POST["codiceCategoria"])){
-   	 			$Err = "campo richiesto";
-    		}else{
-   				$codiceCategoria = $_POST["codiceCategoria"];
-    		}
-
-		}
-
-	?>
-
-<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-		Autore: <input type = "text" name = "autore">
-		<br>
-		<br>
-
-		Editore: <input type="text" name="editore">
-		<br>
-		<br>
-
-		Titolo: <input type="text" name="titolo">
-		<br>
-		<br>
-
-		Descrizione: <input type="text" name="titolo">
-		<br>
-		<br>
-
-		Immagine: <input type="file" name="immagine">
-		<br>
-		<br>
-
-		Pagine: <input type="text" name="pagine">
-		<br>
-		<br>
-
-		Ultimo prezzo: <input type="text" name="ultimoPrezzo">
-		<br>
-		<br>
-
-		Numero copie: <input type="text" name="numeroCopie">
-		<br>
-		<br>
-
-		Copie disponibli: <input type="text" name="copieDisponibili">
-		<br>
-		<br>
-
-		Codice categoria: <input type="text" name="codiceCategoria">
-		<br>
-		<br>
-
-		<input type="submit" name="invia" value="submit">
-</form>
 
 		<?php
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		$servername="localhost";
-		$username="root";
-		$password=false;
-		$dbname="biblioteca";
-		
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		
-		if ($conn->connect_error) {
- 			die("Connection failed: " . $conn->connect_error);
-		}
+			include "../header.php";
+			if (isset($_SESSION["privilegi"])) {   
+				if(!$_SESSION["privilegi"]==1){
+					header("Location: /Biblioteca_polizzi/deniedAccess.php");
+				}
+			}else{
+				header("Location: /Biblioteca_polizzi/deniedAccess.php");
+			}
+		?>
+		<!-- A che servono le label se poi non vengono usate? -->
+		<div class="px-4 py-5 my-5 text-center container" style="background-color: #eee;">
+			<form enctype="multipart/form-data" class="row g-3" method="POST" action="carico.php">
+				<div class="col-md-4">
+					<input required placeholder="Titolo" type="text" class="form-control" name="titolo">
+				</div>
+				<div class="col-md-4">
+					<input required placeholder="Autore" type="text" class="form-control" name="autore">
+				</div>
+				<div class="col-md-4">
+					<input required placeholder="Editore" type="text" class="form-control" name="editore">
+				</div>
 
-		$sql = "INSERT INTO libro (autore, editore, titolo, descrizione,immagine, pagine, ultimoPrezzo, numeroCopie, copieDisponibili, codiceCategoria)
-		VALUES('$autore' , '$editore' , '$titolo' , '$descrizione' , '$immagine' , '$pagine' , '$ultimoPrezzo' , '$numeroCopie' , '$copieDisponibili' , '$codiceCategoria')";
+				<div class="col-md-12">
+					<label for="[]" class="form-label"></label>
+					<textarea required maxlength="2000" class="form-control" placeholder="Descrizione" name="descrizione"></textarea>
+				</div>
 
-		if ($conn->query($sql) === TRUE) {
-  			echo "New record created successfully <br><br>" ;
-		} else {
- 			echo "Error: " . $sql . "<br>" . $conn->error;
-		}
+				<div class="col-md-4">
+					<label for="[]" class="form-label"></label>
+					<input required placeholder="Pagina" type="number" class="form-control" name="pagine">
+				</div>
+				
+				<div class="col-md-4">
+					<label for="[]" class="form-label"></label>	
+					<input required placeholder="Numero Copie" type="number" class="form-control" name="numeroCopie">
+				</div>
 
-		$conn->close();
-}
-?>
+				<!--<div class="col-md-4">
+					<label for="[]" class="form-label"></label>
+					<input required placeholder="Copie Disponibili" type="number" class="form-control" name="copieDisponibili">
+				</div>-->
+				
+				<div class="col-md-4">
+					<label for="[]" class="form-label"></label>
+					<input required placeholder="Ultimo Prezzo" type="number" step="0.01" class="form-control" name="ultimoPrezzo">
+				</div>
+				<!-- Si potrebbe aggiungere una dropbox con la scelta delle categorie già esistenti -->
+				<div class="col-md-4">
+					<label for="[]" class="form-label"></label>
+							
+				
+					<select require class="form-select" name="codiceCategoria">
+					<option selected>Scegli categoria</option>
+						<?php
+							$servername="localhost";
+							$username="root";
+							$password="";
+							$dbname="biblioteca";
 
-</body>
+							$conn = new mysqli($servername, $username, $password, $dbname);
+							if ($conn->connect_error) {
+								die("Connection failed: " . $conn->connect_error);
+							}
+							$sql = "SELECT codiceCategoria, nomeCategoria FROM categoria";
+							$result = $conn->query($sql);
+							if ($result->num_rows > 0) {
+								
+								while($row = $result->fetch_assoc()) {
+									echo '<option value="'.$row["codiceCategoria"].'">'.$row["nomeCategoria"].'</option>';
+								}
+							} else {
+								echo "ERRORE: NON ESISTE ALCUNA CATEGORIA";
+							}						
+						?>
+						</select>		
+				</div>
+
+				<!--<div class="col-md-4">
+					<label for="[]" class="form-label"></label>
+					<input required placeholder="Codice Libro" type="text"  class="form-control" name="codiceLibro">
+				</div>-->
+				
+
+				<div class="col-md-4">
+					<label for="[]" class="form-label"></label>
+					<input required class="form-control form-control-sm" type="file" name="image">
+				</div>
+				
+				<!-- Bisogna dare la funzione che mette l'immagine dal sito alla cartella -->
+				<div class="col-12">
+					<br>
+					<button type="submit" class="btn btn-primary">Invia</button>
+				</div>
+			</form>
+		</div>
+	</body>
 </html>

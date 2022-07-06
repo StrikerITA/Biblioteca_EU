@@ -1,128 +1,44 @@
 <!DOCTYPE html>
-
-<!-- Formattare tutto il foglio, indentazione mancante -->
- 
+	<!-- Formattare tutto il foglio, indentazione mancante --> 
 <html>
-<head>
-<title>
-Biblioteca Online 
-</title>
-
-<link rel="stylesheet" href="stilebiblioteca.css">
-
-</head>
-<body>
-
-
-<p><h1> Log-in </h1></p>
-
-
-
-<td>
-	<!-- action mancante -->
-<form method="post">
-
-	Email <input id="inserimento" type="email" name="email" required>
-	<br><br>
-	Password <input id="inserimento" type="password" name="password" required>
-	<br><br>
-	Codice fiscale <input id="inserimento" type="text" name="codice_fiscale" required>
-	<br><br>
-	<button id="button" type="submit">
-	Login
-	</button>
-
-</form>
-
-
-<!-- action deve andare a registrazione.php -->
-<form method="post" action="registrazione.php"></form>
-	
-	<br><br>
-	<p> Non hai ancora un account creato ? Crealo qui sotto! </p>
-	<button id ="button" type="submit"> Registrati </button>
-
-</form>
-</td>
-<!-- spostare tutto il blocco sopra -->
-<?php
-	$email = "";
-	$pass = "";
-	$codf = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") 
-{
-
-	if(!empty($_POST["email"])){
-		$email = $_POST["email"];
-	}
-
-	if(!empty($_POST["password"])){
-		$pass = $_POST["password"];
-	}
-
-	if(!empty($_POST["codice_fiscale"])){
-		$codf = $_POST["codice_fiscale"];
-	}
-
-
-	if (empty($codf)and empty($email)and empty($pass))
-	{
-		$email="";
-		$pass="";
-		$codf="";
-	}
-
-}
-
-
-if (!empty($codf)and !empty($email)and !empty($pass))
-{
-
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "biblioteca";
-
-
-
-	$conn = new mysqli($servername, $username, $password,$dbname);
-
-
-	if ($conn->connect_error) {
-	  die("Connection failed: " . $conn->connect_error);
-	}
-	
-	//comando in sql fatto 3 volte quando si deve fare tutto in uno
-	  $sql = "SELECT Email FROM utente WHERE Email = '$email'";
-	  $sql2 = "SELECT CodiceFiscale FROM utente WHERE CodiceFiscale = '$codf'";
-	  $sql3 = "SELECT Password FROM utente WHERE Password = '$pass'";
-
-		//si no faccio io
-	$result = $conn->query($sql);
-
-	$result2 = $conn->query($sql2);
-
-	$result3 = $conn->query($sql3);
-
-		//COSA STO VEDENDO??? "and" dentro ad un if....
-		if ($result->num_rows>0 and $result2->num_rows>0 and $result3->num_rows>0)
-		{
-			echo " ti abbiamo trovato l'account, ti stiamo collegando...";
-		}
-		else
-		{
-		  	echo " ERRORE I dati introdotti non sono collegati a nessun account ! Reintroduci i dati! ";
-		}
-
-
-	$conn->close();
-
-}
-
-
-?>
-
-</body>
+	<head>
+		<title>Biblioteca Online </title>
+	<!-- <link rel="stylesheet" href="stilebiblioteca.css"> -->		
+	</head>
+	<body>
+		<?php include "../header.php"; ?>
+		<div class="px-4 py-5 my-5 text-center container rounded-5 align-middle"  style="background-color: #eee;">
+			<p>
+				<h1> Log-in </h1>
+			</p>
+			<form method="post" action="/Biblioteca_polizzi/login_registrazione/intermediario.php">
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+						<label for="[]" class="form-label"></label>
+						<input placeholder="Email" class="form-control px-5" id="inserimento" type="email" name="email" required>
+						<label for="[]" class="form-label"></label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+						<input placeholder="Password" class="form-control px-5" id="inserimento" type="password" name="password" required>
+						<label for="[]" class="form-label"></label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-5"></div>
+					<div class="col-2">
+					<button class="btn btn-primary" id="button" type="submit">Login</button>
+					</div>
+				</div>
+			</form>
+				<!-- action va in registrazione.php -->
+			<label class="text-secondary">
+				Non hai ancora creato un account ? Clicca <a href="/Biblioteca_polizzi/login_registrazione/registrazione.php"> registrati</a>! 
+     		</label>
+		</div>
+		<?php include "../footer.html"; ?>
+	</body>
 </html>
-	

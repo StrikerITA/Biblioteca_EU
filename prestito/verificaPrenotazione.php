@@ -1,8 +1,18 @@
 <?php
-    include "../header.html";
+    include "../header.php";
 ?>
-<div class="p-5 py-5 my-5 text-center container" style="background-color: #eee;">
-    <h1>Verifica la Prenotazione</h1>
+<?php
+if (isset($_SESSION["privilegi"])) {   
+    if(!$_SESSION["privilegi"]==1){
+        header("Location: /Biblioteca_polizzi/deniedAccess.php");
+    }
+}else{
+    header("Location: /Biblioteca_polizzi/deniedAccess.php");
+}
+
+?>
+
+    
     <?php
         $servername = "localhost";
         $username = "root";
@@ -15,13 +25,60 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $codicePrenotazione = $_POST["codicePrenotazione"];
+        $titoloFromPost = $_GET["titolo"];
 
-        $query = "SELECT * FROM prenota WHERE CodicePrenotazione='$codicePrenotazione' AND statoPrenotazione != 'prenotato'";
+        //$query = "SELECT * FROM prenota WHERE CodicePrenotazione='$codicePrenotazione' AND statoPrenotazione = 'attesa'";
+        $query = "SELECT * FROM prenota p, libro l, utente u WHERE p.CodiceLibro=l.CodiceLibro AND p.CodiceFiscale=u.CodiceFiscale
+        AND (p.StatoPrenotazione<>'prenotato' and p.StatoPrenotazione<>'annullato') AND l.Titolo LIKE '%".$titoloFromPost."%' ";
+
+
         $result = $conn->query($query);
 
         if($result->num_rows>0){
-            while($row = $result->fetch_assoc()){
+
+
+            echo '
+
+					<div class="px-4 py-5 my-5 text-center container" style="background-color: #eee;">
+                    <h1>Verifica la Prenotazione</h1>
+						<table class="table table-hover table-striped" style ="background:white;">
+					
+							<thead>
+
+								<tr>
+									<th scope="col">Titolo</th>
+									<th scope="col">Cognome e nome</th>
+									<th scope="col">Copia da prestare</th>
+									<th scope="col">Dai in prestito</th>
+								</tr>
+							</thead>
+							<tbody>
+					';
+					while($row = $result->fetch_assoc()) {
+						echo '
+								<tr>
+									<td>'.$row["Titolo"].'</td>
+									<td>'.$row["Cognome"].' '.$row["Nome"].'</td>	
+									' . '<form method="post" action="prestito.php">
+                                    <td> <input type="text"  class="form-control" placeholder="Inserire il codice copia..." name="codiceCopia" required></td>
+									<input type="hidden" name="codicePrenotazione" value="'.$row["CodicePrenotazione"].'">
+									<td><button class="btn btn-secondary">clicca</button></form>' . '</td>						
+								</tr>
+						';
+					}
+					echo'
+							</tbody>
+						</table>
+					</div>
+						';
+
+
+
+
+
+
+
+           /* while($row = $result->fetch_assoc()){
                 //echo '<div class="it-list-wrapper">';
                 echo '<ul class="list-group ml-lg-5 mr-lg-5">';
                 echo '<li class="list-group-item">Codice Prenotazione: ' . $row["CodicePrenotazione"] .  '</li>';
@@ -38,9 +95,9 @@
                     <button class='btn btn-warning ' style='color:white;'>Inserisci</button>
                     <a class='btn btn-warning' href='inserimentoPrenotazione.php' style='margin-right:2px;color:white;'>Torna Indietro</a>
                     
-                    <input type='hidden' name='codicePrenotazione' value='".$codicePrenotazione." '>
+                    <input type='hidden' name='codicePrenotazione' value='".$row["CodicePrenotazione"]." '>
                 </form> ";   
-            }
+            }*/
         }else{
             echo "<br>";
             
@@ -54,7 +111,7 @@
         }
         $conn->close();              
     ?>
-</div>
+
 <?php
     include "../footer.html";
 ?>
